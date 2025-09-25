@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>@ViewData["Title"] - Aerolinea</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    @await Html.PartialAsync("_Styles")
+
+    <!-- =======================================================
+    * Template Name: Tour
+    * Template URL: https://bootstrapmade.com/tour-bootstrap-travel-website-template/
+    * Updated: Jul 01 2025 with Bootstrap v5.3.7
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body class="index-page">
+
+    @await Html.PartialAsync("_Header")
+
+    <main class="main">
+
+        @RenderBody()
+
+    </main>
+
+    @await Html.PartialAsync("_Footer")
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    @await Html.PartialAsync("_Scripts")
+
+</body>
+
+</html>
