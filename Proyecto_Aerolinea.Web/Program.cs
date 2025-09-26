@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Proyecto_Aerolinea.Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
