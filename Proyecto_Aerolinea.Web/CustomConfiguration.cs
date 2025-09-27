@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace Proyecto_Aerolinea.Web
 {
