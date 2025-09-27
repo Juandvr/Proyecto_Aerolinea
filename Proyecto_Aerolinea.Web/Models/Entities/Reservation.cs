@@ -6,8 +6,10 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     {
         [Key]
         public int ReservationId { get; set; }
+
         [Required]
         public DateTime ReservationDate { get; set; }
+
         [Required, StringLength(25)]
         public string Status { get; set; }
 
@@ -16,10 +18,8 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
         public int UserId { get; set; }
         public User User { get; set; }
 
-        // Relacion con Payment
-        public ICollection<Payment> Payments { get; set; }
-
-        // Relacion con Ticket
-        public ICollection<Ticket> Tickets { get; set; }
+        // Relaciones
+        public ICollection<Payment> Payments { get; set; } = new List<Payment>();
+        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 }
