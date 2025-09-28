@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Proyecto_Aerolinea.Web;
 using Proyecto_Aerolinea.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,10 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
-});
+builder.AddCustomConfiguration();
 
 var app = builder.Build();
 

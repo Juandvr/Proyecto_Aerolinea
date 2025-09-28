@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Proyecto_Aerolinea.Web.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace Proyecto_Aerolinea.Web.Models.Entities
+namespace Proyecto_Aerolinea.Web.Core.DTOs
 {
-    public class Flight
+    public class FlightDTO
     {
-        [Key]
         public Guid FlightId { get; set; }
         [Required, StringLength(50)]
         public string FlightCode { get; set; }
@@ -12,7 +12,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
         public DateTime DepartureDateTime { get; set; }
         [Required]
         public DateTime ArrivalDateTime { get; set; }
-        [Required, StringLength (30)]
+        [Required, StringLength(30)]
         public string Status { get; set; }
         // FKs Airport
         [Required]
@@ -25,8 +25,5 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
         [Required]
         public int AircraftId { get; set; }
         public Aircraft Aircraft { get; set; }
-        // Relaciones
-        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
-        public ICollection<SeatAssignment> SeatAssignments { get; set; } = new List<SeatAssignment>();
     }
 }
