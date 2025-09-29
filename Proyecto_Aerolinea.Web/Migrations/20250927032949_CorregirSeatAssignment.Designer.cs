@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Aerolinea.Web.Data;
 
@@ -11,9 +12,11 @@ using Proyecto_Aerolinea.Web.Data;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250927032949_CorregirSeatAssignment")]
+    partial class CorregirSeatAssignment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,9 +184,8 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-                    b.Property<int>("ReservationId")
 
-             
+                    b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
@@ -297,15 +299,13 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("QRCode")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("ReservationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SeatAssignmentId")
                         .HasColumnType("int");
 
                     b.HasKey("TicketId");

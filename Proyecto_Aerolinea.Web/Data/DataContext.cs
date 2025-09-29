@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base (options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
         public DbSet<User> Users { get; set; }
@@ -81,9 +81,9 @@ namespace Proyecto_Aerolinea.Web.Data
                 .OnDelete(DeleteBehavior.Restrict);
             // Reservation <-> Payment
             modelBuilder.Entity<Payment>()
-                .HasOne(p => p.reservation)
+                .HasOne(p => p.Reservation)
                 .WithMany(r => r.Payments)
-                .HasForeignKey(p => p.Reservationid)
+                .HasForeignKey(p => p.ReservationId)
                 .OnDelete(DeleteBehavior.Cascade);
             // Reservation <-> User
             modelBuilder.Entity<Reservation>()
@@ -91,6 +91,7 @@ namespace Proyecto_Aerolinea.Web.Data
                 .WithMany(u => u.Reservations)
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
         }
-    }
+    }    
 }
