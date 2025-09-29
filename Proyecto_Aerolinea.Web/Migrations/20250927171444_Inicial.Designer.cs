@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Aerolinea.Web.Data;
 
@@ -11,9 +12,11 @@ using Proyecto_Aerolinea.Web.Data;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250927171444_Inicial")]
+    partial class Inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,11 +146,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-<<<<<<< HEAD
-                    b.Property<string>("FirstName")
-=======
                     b.Property<string>("FirsName")
->>>>>>> services
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -186,11 +185,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-<<<<<<< HEAD
-                    b.Property<int>("ReservationId")
-=======
                     b.Property<int>("Reservationid")
->>>>>>> services
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
@@ -200,11 +195,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
                     b.HasKey("PaymentId");
 
-<<<<<<< HEAD
-                    b.HasIndex("ReservationId");
-=======
                     b.HasIndex("Reservationid");
->>>>>>> services
 
                     b.ToTable("Payments");
                 });
@@ -309,11 +300,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-<<<<<<< HEAD
-                    b.Property<string>("QRCode")
-=======
                     b.Property<string>("QRCodr")
->>>>>>> services
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -321,12 +308,9 @@ namespace Proyecto_Aerolinea.Web.Migrations
                     b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-=======
                     b.Property<int>("SeatAssignmentId")
                         .HasColumnType("int");
 
->>>>>>> services
                     b.HasKey("TicketId");
 
                     b.HasIndex("FlightId");
@@ -354,11 +338,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-<<<<<<< HEAD
-                    b.Property<string>("FirstName")
-=======
                     b.Property<string>("FirsName")
->>>>>>> services
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -416,15 +396,6 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Models.Entities.Payment", b =>
                 {
-<<<<<<< HEAD
-                    b.HasOne("Proyecto_Aerolinea.Web.Models.Entities.Reservation", "Reservation")
-                        .WithMany("Payments")
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reservation");
-=======
                     b.HasOne("Proyecto_Aerolinea.Web.Models.Entities.Reservation", "reservation")
                         .WithMany("Payments")
                         .HasForeignKey("Reservationid")
@@ -432,7 +403,6 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired();
 
                     b.Navigation("reservation");
->>>>>>> services
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Models.Entities.Reservation", b =>

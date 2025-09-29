@@ -81,9 +81,15 @@ namespace Proyecto_Aerolinea.Web.Data
                 .OnDelete(DeleteBehavior.Restrict);
             // Reservation <-> Payment
             modelBuilder.Entity<Payment>()
+<<<<<<< HEAD
                 .HasOne(p => p.Reservation)
                 .WithMany(r => r.Payments)
                 .HasForeignKey(p => p.ReservationId)
+=======
+                .HasOne(p => p.reservation)
+                .WithMany(r => r.Payments)
+                .HasForeignKey(p => p.Reservationid)
+>>>>>>> services
                 .OnDelete(DeleteBehavior.Cascade);
             // Reservation <-> User
             modelBuilder.Entity<Reservation>()
@@ -92,6 +98,9 @@ namespace Proyecto_Aerolinea.Web.Data
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> services
     }
 }

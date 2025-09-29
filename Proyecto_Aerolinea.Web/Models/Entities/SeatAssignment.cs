@@ -16,9 +16,16 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
         [Required]
         public int TicketId { get; set; }
         public Ticket Ticket { get; set; }
+<<<<<<< HEAD
 
         // FK Seat (opcional)
         public int? SeatId { get; set; }
         public Seat Seat { get; set; }
+=======
+        // FK Seat (opcional)
+        public int? SeatId { get; set; }
+        public Seat Seat { get; set; }
+
+>>>>>>> services
     }
 }

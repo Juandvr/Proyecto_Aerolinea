@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Data;
+using Proyecto_Aerolinea.Web.Services.AirportServices;
+using SystemStore.Services.AirportServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,18 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Registrar el DataContext
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
+});
+
+// Services
+builder.Services.AddScoped<AddAirport>();
+builder.Services.AddScoped<UpdateAirport>();
+builder.Services.AddScoped<GetAirportById>();
+builder.Services.AddScoped<DeleteAirport>();
 
 var app = builder.Build();
 

@@ -32,7 +32,10 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
         [Required]
         public int AircraftId { get; set; }
         public Aircraft Aircraft { get; set; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> services
         // Relaciones
         public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
         public ICollection<SeatAssignment> SeatAssignments { get; set; } = new List<SeatAssignment>();
