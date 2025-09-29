@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Aerolinea.Web.Core;
-using Proyecto_Aerolinea.Web.Core.DTOs;
+using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Services.Abstract;
 using Proyecto_Aerolinea.Web.Services.Implementation;
@@ -25,8 +25,14 @@ namespace Proyecto_Aerolinea.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Available()
         {
-            var fly = await _flightService.Getlistasync();
-            return View(fly);
+            Response<List<FlightDTO>> response = await _flightService.Getlistasync();
+
+            if (!response.Succeed)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(response.Result);
         }
 
         // GET: FlightsController/Details/5
