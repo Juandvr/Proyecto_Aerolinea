@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class Payment
     {
         [Key]
-        public int PaymentId { get; set; }
+        public Guid PaymentId { get; set; }
 
         [Required]
         public DateTime PaymentDate { get; set; }

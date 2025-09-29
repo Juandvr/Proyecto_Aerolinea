@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class SeatAssignment
     {
         [Key]
-        public int SeatAssignmentId { get; set; }
+        public Guid SeatAssignmentId { get; set; }
 
         // FK Flight
         [Required]

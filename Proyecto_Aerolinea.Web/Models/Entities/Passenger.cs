@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class Passenger
     {
         [Key]
-        public int PassengerId { get; set; }
+        public Guid PassengerId { get; set; }
 
         [Required, StringLength(50)]
         public string FirstName { get; set; }

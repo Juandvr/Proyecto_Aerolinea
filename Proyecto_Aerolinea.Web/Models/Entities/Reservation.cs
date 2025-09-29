@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class Reservation
     {
         [Key]
-        public int ReservationId { get; set; }
+        public Guid ReservationId { get; set; }
 
         [Required]
         public DateTime ReservationDate { get; set; }

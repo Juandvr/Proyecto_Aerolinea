@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class Aircraft
     {
         [Key]
-        public int AircraftId { get; set; }
+        public Guid AircraftId { get; set; }
 
         [Required, StringLength(50)]
         public string Model { get; set; }

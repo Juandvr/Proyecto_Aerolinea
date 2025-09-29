@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
         [Required, StringLength(50)]
         public string FirstName { get; set; }

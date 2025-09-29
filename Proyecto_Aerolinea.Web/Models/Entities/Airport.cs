@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class Airport
     {
         [Key]
-        public int AirportId { get; set; }
+        public Guid AirportId { get; set; }
 
         [Required, StringLength(80)]
         public string AirportName { get; set; }

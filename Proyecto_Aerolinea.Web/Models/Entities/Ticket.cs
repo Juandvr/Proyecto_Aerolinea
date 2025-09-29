@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
     public class Ticket
     {
         [Key]
-        public int TicketId { get; set; }
+        public Guid TicketId { get; set; }
 
         [Required, StringLength(100)]
         public string QRCode { get; set; }
