@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Core;
-using Proyecto_Aerolinea.Web.Core.DTOs;
 using Proyecto_Aerolinea.Web.Data;
-using Proyecto_Aerolinea.Web.Models.Entities;
+using Proyecto_Aerolinea.Web.Data.Entities;
+using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Services.Abstract;
 
 namespace Proyecto_Aerolinea.Web.Services.Implementation
@@ -14,6 +14,12 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
         {
             _context=context;
         }
+
+        public Task<Response<FlightDTO>> CreateAsync(FlightDTO dto)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Response<List<FlightDTO>>> Getlistasync()
         {
             Response<List<FlightDTO>> response = new Response<List<FlightDTO>>();
@@ -36,7 +42,7 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
                     DestinationAirportId = f.DestinationAirportId,
                     DestinationAirport =f.DestinationAirport,
                 }).ToList();
-                response.Succed = true;
+                response.Succeed = true;
                 response.Result = flightDTOs;
 
                 return response;
@@ -45,7 +51,7 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             {
                 return new Response<List<FlightDTO>>
                 {
-                    Succed = false,
+                    Succeed = false,
                     Message = "No se pudo cargar la lista de vuelos",
                     Errors = new List<string> { ex.Message }
                 };
