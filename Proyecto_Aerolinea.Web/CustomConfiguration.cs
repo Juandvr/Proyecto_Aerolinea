@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Services.Abstract;
@@ -17,6 +19,17 @@ namespace Proyecto_Aerolinea.Web
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
             });
 
+            //AutoMapper
+            builder.Services.AddAutoMapper(typeof(Program));
+
+            //Toast Notification
+            builder.Services.AddNotyf(config =>
+            {
+                config.DurationInSeconds = 10;
+                config.IsDismissable = true;
+                config.Position = NotyfPosition.BottomRight;
+            });
+
             //Services
             AddServices(builder);
 
@@ -26,10 +39,14 @@ namespace Proyecto_Aerolinea.Web
         public static void AddServices(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IFlightService, FlightService>();
-            builder.Services.AddScoped<AddAirport>();
-            builder.Services.AddScoped<UpdateAirport>();
-            builder.Services.AddScoped<GetAirportById>();
-            builder.Services.AddScoped<DeleteAirport>();
+            builder.Services.AddScoped<IAirportService, AirportService>();
+        }
+
+        public static WebApplication AddCustomWebApplicationConfiguration(this WebApplication app)
+        {
+            app.UseNotyf();
+
+            return app;
         }
     }
 }
