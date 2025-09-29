@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Services.Abstract;
-using Proyecto_Aerolinea.Web.Services.AirportServices;
 using Proyecto_Aerolinea.Web.Services.Implementation;
-using SystemStore.Services.AirportServices;
 
 namespace Proyecto_Aerolinea.Web
 {
