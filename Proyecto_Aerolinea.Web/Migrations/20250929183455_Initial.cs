@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Aircrafts",
                 columns: table => new
                 {
-                    AircraftId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AircraftId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
                     RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -31,8 +30,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Airports",
                 columns: table => new
                 {
-                    AirportId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AirportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AirportName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     AirportCity = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     AirportCountry = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
@@ -47,9 +45,8 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Passengers",
                 columns: table => new
                 {
-                    PassengerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirsName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PassengerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -64,9 +61,8 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirsName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -83,11 +79,10 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Seats",
                 columns: table => new
                 {
-                    SeatId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SeatId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SeatNumber = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Class = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    AircraftId = table.Column<int>(type: "int", nullable: false)
+                    AircraftId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,15 +99,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Flights",
                 columns: table => new
                 {
-                    FlightId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FlightId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FlightCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DepartureDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    OriginAirportId = table.Column<int>(type: "int", nullable: false),
-                    DestinationAirportId = table.Column<int>(type: "int", nullable: false),
-                    AircraftId = table.Column<int>(type: "int", nullable: false)
+                    OriginAirportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DestinationAirportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AircraftId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,11 +135,10 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Reservations",
                 columns: table => new
                 {
-                    ReservationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReservationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,20 +155,19 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Payments",
                 columns: table => new
                 {
-                    PaymentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaymentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Status = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Reservationid = table.Column<int>(type: "int", nullable: false)
+                    ReservationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payments", x => x.PaymentId);
                     table.ForeignKey(
-                        name: "FK_Payments_Reservations_Reservationid",
-                        column: x => x.Reservationid,
+                        name: "FK_Payments_Reservations_ReservationId",
+                        column: x => x.ReservationId,
                         principalTable: "Reservations",
                         principalColumn: "ReservationId",
                         onDelete: ReferentialAction.Cascade);
@@ -185,14 +177,12 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Tickets",
                 columns: table => new
                 {
-                    TicketId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QRCodr = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    TicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    QRCode = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ReservationId = table.Column<int>(type: "int", nullable: false),
-                    FlightId = table.Column<int>(type: "int", nullable: false),
-                    PassengerId = table.Column<int>(type: "int", nullable: false),
-                    SeatAssignmentId = table.Column<int>(type: "int", nullable: false)
+                    ReservationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FlightId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PassengerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,11 +211,10 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "SeatAssigments",
                 columns: table => new
                 {
-                    SeatAssignmentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FlightId = table.Column<int>(type: "int", nullable: false),
-                    TicketId = table.Column<int>(type: "int", nullable: false),
-                    SeatId = table.Column<int>(type: "int", nullable: true)
+                    SeatAssignmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FlightId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SeatId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -266,9 +255,9 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 column: "OriginAirportId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_Reservationid",
+                name: "IX_Payments_ReservationId",
                 table: "Payments",
-                column: "Reservationid");
+                column: "ReservationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_UserId",

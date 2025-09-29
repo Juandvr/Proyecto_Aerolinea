@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Proyecto_Aerolinea.Web.Models.Entities;
+using Proyecto_Aerolinea.Web.Data.Entities;
 
 namespace Proyecto_Aerolinea.Web.Data
 {
