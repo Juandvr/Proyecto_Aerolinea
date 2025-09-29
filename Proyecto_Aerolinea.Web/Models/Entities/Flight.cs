@@ -21,16 +21,16 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
 
         // FKs Airport
         [Required]
-        public int OriginAirportId { get; set; }
+        public Guid OriginAirportId { get; set; }
         public Airport OriginAirport { get; set; }
 
         [Required]
-        public int DestinationAirportId { get; set; }
+        public Guid DestinationAirportId { get; set; }
         public Airport DestinationAirport { get; set; }
 
         // FK Aircraft
         [Required]
-        public int AircraftId { get; set; }
+        public Guid AircraftId { get; set; }
         public Aircraft Aircraft { get; set; }
         // Relaciones
         public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

@@ -45,7 +45,7 @@ namespace SystemStore.Controllers
 
         // Update product
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAirport(int id, [FromBody] AirportDto dto)
+        public async Task<IActionResult> UpdateAirport(Guid id, [FromBody] AirportDto dto)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace SystemStore.Controllers
         // GetAirportById
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Airport>> GetByAirportId(int id)
+        public async Task<ActionResult<Airport>> GetByAirportId(Guid id)
         {
             var airport = await _getAirportById.Execute(id);
 
@@ -74,7 +74,7 @@ namespace SystemStore.Controllers
 
         // Delete Airport
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAirport(int id)
+        public async Task<IActionResult> DeleteAirport(Guid id)
         {
             var deleted = await _deleteAirport.Execute(id);
             if (!deleted) return NotFound(new { message = "Airport no encontrado" });

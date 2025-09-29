@@ -21,7 +21,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
 
         // FK Reservation
         [Required]
-        public int ReservationId { get; set; }
+        public Guid ReservationId { get; set; }
         public Reservation Reservation { get; set; }
     }
 }

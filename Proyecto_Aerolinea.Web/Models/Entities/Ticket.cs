@@ -15,17 +15,17 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
 
         // FK Reservation
         [Required]
-        public int ReservationId { get; set; }
+        public Guid ReservationId { get; set; }
         public Reservation Reservation { get; set; }
 
         // FK Flight
         [Required]
-        public int FlightId { get; set; }
+        public Guid FlightId { get; set; }
         public Flight Flight { get; set; }
 
         // FK Passenger
         [Required]
-        public int PassengerId { get; set; }
+        public Guid PassengerId { get; set; }
         public Passenger Passenger { get; set; }
 
         // FK SeatAssignment (uno a uno)

@@ -33,8 +33,8 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
                     DepartureDateTime =f.DepartureDateTime,
                     OriginAirport=f.OriginAirport,
                     OriginAirportId=f.OriginAirportId,
-                    DestinationAirportId=f.DestinationAirportId,
-                    DestinationAirport=f.DestinationAirport,
+                    DestinationAirportId = f.DestinationAirportId,
+                    DestinationAirport =f.DestinationAirport,
                 }).ToList();
                 response.Succed = true;
                 response.Result = flightDTOs;

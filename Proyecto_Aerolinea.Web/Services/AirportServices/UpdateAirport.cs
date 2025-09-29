@@ -13,7 +13,7 @@ namespace SystemStore.Services.AirportServices
             _context = context;
         }
 
-        public async Task<Airport> Execute(int id, AirportDto dto)
+        public async Task<Airport> Execute(Guid id, AirportDto dto)
         {
             var airport = await _context.Airports.FirstOrDefaultAsync(p => p.AirportId == id);
             if (airport == null) return null;

@@ -25,7 +25,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Available()
         {
-            var fly = _flightService.Getlistasync();
+            var fly = await _flightService.Getlistasync();
             return View(fly);
         }
 

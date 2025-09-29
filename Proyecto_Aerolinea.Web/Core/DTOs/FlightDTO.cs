@@ -16,14 +16,14 @@ namespace Proyecto_Aerolinea.Web.Core.DTOs
         public string Status { get; set; }
         // FKs Airport
         [Required]
-        public int OriginAirportId { get; set; }
+        public Guid OriginAirportId { get; set; }
         public Airport OriginAirport { get; set; }
         [Required]
-        public int DestinationAirportId { get; set; }
+        public Guid DestinationAirportId { get; set; }
         public Airport DestinationAirport { get; set; }
         // FK AircraftId
         [Required]
-        public int AircraftId { get; set; }
+        public Guid AircraftId { get; set; }
         public Aircraft Aircraft { get; set; }
     }
 }

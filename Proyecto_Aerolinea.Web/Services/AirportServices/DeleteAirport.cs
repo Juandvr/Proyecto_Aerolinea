@@ -13,7 +13,7 @@ namespace Proyecto_Aerolinea.Web.Services.AirportServices
             _context = context;
         }
 
-        public async Task<bool> Execute(int id)
+        public async Task<bool> Execute(Guid id)
         {
             var airport = await _context.Airports.FirstOrDefaultAsync(a => a.AirportId == id);
             if (airport == null) return false;

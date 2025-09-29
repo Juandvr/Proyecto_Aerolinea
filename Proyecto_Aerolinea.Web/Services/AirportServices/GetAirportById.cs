@@ -12,7 +12,7 @@ namespace SystemStore.Services.AirportServices
         {
             _context = context;
         }
-        public async Task<Airport?> Execute(int id)
+        public async Task<Airport?> Execute(Guid id)
         {
             return await _context.Airports.FirstOrDefaultAsync(p => p.AirportId == id);
         }

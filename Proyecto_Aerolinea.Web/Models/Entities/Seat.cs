@@ -15,7 +15,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
 
         // FK Aircraft
         [Required]
-        public int AircraftId { get; set; }
+        public Guid AircraftId { get; set; }
         public Aircraft Aircraft { get; set; }
 
         // Relaciones

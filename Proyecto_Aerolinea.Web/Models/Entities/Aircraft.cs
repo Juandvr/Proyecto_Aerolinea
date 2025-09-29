@@ -8,7 +8,7 @@ namespace Proyecto_Aerolinea.Web.Models.Entities
         public Guid AircraftId { get; set; }
 
         [Required, StringLength(50)]
-        public string Model { get; set; }
+        public string? Model { get; set; }
 
         [Required]
         public int Capacity { get; set; }
