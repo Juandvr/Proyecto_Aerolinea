@@ -8,16 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 // DbContext
 
 builder.Services.AddDbContext<DataContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-// Registrar el DataContext
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
-});
 
 // Services
 builder.Services.AddScoped<AddAirport>();
