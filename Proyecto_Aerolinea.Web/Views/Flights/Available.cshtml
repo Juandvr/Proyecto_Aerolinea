@@ -1,8 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Proyecto_Aerolinea.Web.DTOs
+@model List<FlightDTO>
+
 @{
-    ViewData["Title"] = "Vuelos Disponibles";
+    ViewData["Title"] = "Vuelos";
 }
 
-<h1>VUELOS</h1>
+<div class="page-title dark-background aos-init aos-animate" data-aos="fade" style="background-image: url(assets/img/travel/showcase-8.webp);">
+    <div class="container position-relative">
+        <h1>Vuelos</h1>
+        <p>Lista de vuelos</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">Tours</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Código</th>
+            <th>Fecha de salida</th>
+            <th>Fecha de llegada</th>
+            <th>Estado</th>
+            <th>Aeropuerto de origen</th>
+            <th>Aeropuerto de destino</th>
+            <th>Avión</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var flight in Model)
+        {
+            <tr>
+                <td>@flight.FlightId</td>
+                <td>@flight.FlightCode</td>
+                <td>@flight.DepartureDateTime</td>
+                <td>@flight.ArrivalDateTime</td>
+                <td>@flight.Status</td>
+                <td>@flight.OriginAirport</td>
+                <td>@flight.DestinationAirport</td>
+                <td>@flight.Aircraft</td>
+            </tr>
+        }
+    </tbody>
+</table>

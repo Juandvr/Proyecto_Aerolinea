@@ -1,0 +1,43 @@
+﻿@using Proyecto_Aerolinea.Web.DTOs
+@model List<AirportDTO>
+
+@{
+    ViewData["Title"] = "Aeropuertos";
+}
+
+<div class="page-title dark-background aos-init aos-animate" data-aos="fade" style="background-image: url(assets/img/travel/showcase-8.webp);">
+    <div class="container position-relative">
+        <h1>Aeropuertos</h1>
+        <p>Lista de los aeropuertos</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">Tours</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>AirportId</th>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+            <th>País</th>
+            <th>IATA</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var airport in Model)
+        {
+            <tr>
+                <td>@airport.AirportId</td>
+                <td>@airport.AirportName</td>
+                <td>@airport.AirportCity</td>
+                <td>@airport.AirportCountry</td>
+                <td>@airport.IATACode</td>
+            </tr>
+        }
+    </tbody>
+</table>
