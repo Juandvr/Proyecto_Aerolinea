@@ -5,7 +5,7 @@ namespace Proyecto_Aerolinea.Web.DTOs
 {
     public class FlightDTO
     {
-        public Guid FlightId { get; set; }
+        public Guid Id { get; set; }
         [Required, StringLength(50)]
         public string FlightCode { get; set; }
         [Required]

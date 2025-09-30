@@ -25,7 +25,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Available()
         {
-            Response<List<FlightDTO>> response = await _flightService.Getlistasync();
+            Response<List<FlightDTO>> response = await _flightService.GetListAsync();
 
             if (!response.Succeed)
             {

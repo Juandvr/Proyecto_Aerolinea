@@ -9,6 +9,7 @@ namespace Proyecto_Aerolinea.Web.Core
         public AutoMapperProfiles()
         {
             CreateMap<Airport, AirportDTO>().ReverseMap();
+            CreateMap<Flight, FlightDTO>().ReverseMap();
         }
     }
 }
