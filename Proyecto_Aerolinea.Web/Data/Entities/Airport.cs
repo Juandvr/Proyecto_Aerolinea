@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Proyecto_Aerolinea.Web.Data.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_Aerolinea.Web.Data.Entities
 {
-    public class Airport
+    public class Airport : IId
     {
         [Key]
-        public Guid AirportId { get; set; }
+        public Guid Id { get; set; }
 
         [Required, StringLength(80)]
         public string AirportName { get; set; }

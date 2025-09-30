@@ -6,7 +6,7 @@ namespace Proyecto_Aerolinea.Web.DTOs
     public class AirportDTO
     {
         [Key]
-        public Guid AirportId { get; set; }
+        public Guid Id { get; set; }
 
         [Required, StringLength(80)]
         public string AirportName { get; set; }
