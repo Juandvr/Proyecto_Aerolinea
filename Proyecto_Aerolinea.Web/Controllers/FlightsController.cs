@@ -6,15 +6,19 @@ using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Services.Abstract;
 using Proyecto_Aerolinea.Web.Services.Implementation;
 using System.Collections.Generic;
+using Proyecto_Aerolinea.Web.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace Proyecto_Aerolinea.Web.Controllers
 {
     public class FlightsController : Controller
     {
         private readonly IFlightService _flightService;
-        public FlightsController(IFlightService flightService)
+        private readonly INotyfService _otyfService;
+        public FlightsController(IFlightService flightService, INotyfService otyfService)
         {
             _flightService=flightService;
+            _otyfService = otyfService;
         }
         // GET: FlightsController
         public ActionResult Index()
@@ -23,14 +27,15 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Available()
+        public async Task<IActionResult> Available(/*[FromQuery] Pages pages*/)
         {
             Response<List<FlightDTO>> response = await _flightService.MyGetListAsync();
 
-            /*if (!response.Succeed)
+            if (!response.Succeed)
             {
+                _otyfService.Error(response.Message);
                 return RedirectToAction("Index", "Home");
-            }*/
+            }
 
             return View(response.Result);
         }
