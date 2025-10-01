@@ -38,6 +38,7 @@ namespace Proyecto_Aerolinea.Web
         {
             builder.Services.AddScoped<IFlightService, FlightService>();
             builder.Services.AddScoped<IAirportService, AirportService>();
+            builder.Services.AddScoped<IAircraftService, AircraftService>();
         }
 
         public static WebApplication AddCustomWebApplicationConfiguration(this WebApplication app)

@@ -1,9 +1,9 @@
-﻿using Proyecto_Aerolinea.Web.Data.Abstractions;
+﻿using Proyecto_Aerolinea.Web.Data.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace Proyecto_Aerolinea.Web.Data.Entities
+namespace Proyecto_Aerolinea.Web.DTOs
 {
-    public class Aircraft : IId
+    public class AircraftDTO
     {
         [Key]
         public Guid Id { get; set; }

@@ -10,6 +10,7 @@ namespace Proyecto_Aerolinea.Web.Core
         {
             CreateMap<Airport, AirportDTO>().ReverseMap();
             CreateMap<Flight, FlightDTO>().ReverseMap();
+            CreateMap<Aircraft, AircraftDTO>().ReverseMap();
         }
     }
 }
