@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Proyecto_Aerolinea.Web.Data.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_Aerolinea.Web.Data.Entities
 {
-    public class Ticket
+    public class Ticket : IId
     {
         [Key]
-        public Guid TicketId { get; set; }
+        public Guid Id { get; set; }
 
         [Required, StringLength(100)]
         public string QRCode { get; set; }

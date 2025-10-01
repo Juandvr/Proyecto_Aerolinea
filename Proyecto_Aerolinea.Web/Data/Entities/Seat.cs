@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Proyecto_Aerolinea.Web.Data.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_Aerolinea.Web.Data.Entities
 {
-    public class Seat
+    public class Seat : IId
     {
         [Key]
-        public Guid SeatId { get; set; }
+        public Guid Id { get; set; }
 
         [Required, StringLength(25)]
         public string SeatNumber { get; set; }

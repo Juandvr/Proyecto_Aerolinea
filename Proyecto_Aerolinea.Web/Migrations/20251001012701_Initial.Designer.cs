@@ -12,7 +12,7 @@ using Proyecto_Aerolinea.Web.Data;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250929183455_Initial")]
+    [Migration("20251001012701_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,7 +27,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Aircraft", b =>
                 {
-                    b.Property<Guid>("AircraftId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -47,14 +47,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AircraftId");
+                    b.HasKey("Id");
 
                     b.ToTable("Aircrafts");
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Airport", b =>
                 {
-                    b.Property<Guid>("AirportId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -77,14 +77,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AirportId");
+                    b.HasKey("Id");
 
                     b.ToTable("Airports");
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Flight", b =>
                 {
-                    b.Property<Guid>("FlightId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -113,7 +113,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("FlightId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AircraftId");
 
@@ -126,7 +126,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Passenger", b =>
                 {
-                    b.Property<Guid>("PassengerId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -153,14 +153,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("PassengerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Passengers");
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Payment", b =>
                 {
-                    b.Property<Guid>("PaymentId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -183,7 +183,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("PaymentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ReservationId");
 
@@ -192,7 +192,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Reservation", b =>
                 {
-                    b.Property<Guid>("ReservationId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -207,7 +207,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ReservationId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -216,7 +216,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Seat", b =>
                 {
-                    b.Property<Guid>("SeatId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -233,7 +233,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("SeatId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AircraftId");
 
@@ -242,7 +242,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.SeatAssignment", b =>
                 {
-                    b.Property<Guid>("SeatAssignmentId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -255,7 +255,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                     b.Property<Guid>("TicketId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("SeatAssignmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("FlightId");
 
@@ -269,7 +269,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Ticket", b =>
                 {
-                    b.Property<Guid>("TicketId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -290,7 +290,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                     b.Property<Guid>("ReservationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("TicketId");
+                    b.HasKey("Id");
 
                     b.HasIndex("FlightId");
 
@@ -303,7 +303,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.User", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -339,7 +339,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
