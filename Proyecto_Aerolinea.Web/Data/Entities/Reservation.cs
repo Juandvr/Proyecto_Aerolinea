@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Proyecto_Aerolinea.Web.Data.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_Aerolinea.Web.Data.Entities
 {
-    public class Reservation
+    public class Reservation : IId
     {
         [Key]
-        public Guid ReservationId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public DateTime ReservationDate { get; set; }

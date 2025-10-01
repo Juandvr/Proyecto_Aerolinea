@@ -10,6 +10,6 @@ namespace Proyecto_Aerolinea.Web.Services.Abstract
         public Task<Response<object>> DeleteAsync(Guid id);
         public Task<Response<FlightDTO>> GetOneAsync(Guid id);
         public Task<Response<FlightDTO>> UpdateAsync(FlightDTO dto);
-        public Task<Response<List<FlightDTO>>> GetListAsync();
+        public Task<Response<List<FlightDTO>>> MyGetListAsync();
     }
 }

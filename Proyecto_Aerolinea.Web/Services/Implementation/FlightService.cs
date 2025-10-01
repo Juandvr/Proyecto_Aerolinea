@@ -38,7 +38,7 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             return await GetOneAsync<Flight, FlightDTO>(id);
         }
 
-        public async Task<Response<List<FlightDTO>>> GetListAsync()
+        public async Task<Response<List<FlightDTO>>> MyGetListAsync()
         {
             return await GetListAsync<Flight, FlightDTO>();
         }

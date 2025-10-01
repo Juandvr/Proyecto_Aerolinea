@@ -25,12 +25,12 @@ namespace Proyecto_Aerolinea.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Available()
         {
-            Response<List<FlightDTO>> response = await _flightService.GetListAsync();
+            Response<List<FlightDTO>> response = await _flightService.MyGetListAsync();
 
-            if (!response.Succeed)
+            /*if (!response.Succeed)
             {
                 return RedirectToAction("Index", "Home");
-            }
+            }*/
 
             return View(response.Result);
         }
