@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PrivateBlog.Web.Services;
 using Proyecto_Aerolinea.Web.Core;
 using Proyecto_Aerolinea.Web.Data;
@@ -40,8 +42,15 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
 
         public async Task<Response<List<FlightDTO>>> GetListAsync()
         {
-            return await GetListAsync<Flight, FlightDTO>();
-        }
+            List<Flight> flights = await _context.Flights
+            .Include(f => f.OriginAirport)
+            .Include(f => f.DestinationAirport)
+            .Include(f => f.Aircraft)
+            .ToListAsync();
 
+            List<FlightDTO> dtos = _mapper.Map<List<FlightDTO>>(flights);
+
+            return Response<List<FlightDTO>>.Success(dtos);
+        }
     }
 }

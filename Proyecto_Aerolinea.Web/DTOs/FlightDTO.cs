@@ -1,4 +1,5 @@
-﻿using Proyecto_Aerolinea.Web.Data.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Proyecto_Aerolinea.Web.Data.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_Aerolinea.Web.DTOs
@@ -17,13 +18,13 @@ namespace Proyecto_Aerolinea.Web.DTOs
         // FKs Airport
         [Required]
         public Guid OriginAirportId { get; set; }
-        public Airport OriginAirport { get; set; }
+        public AirportDTO? OriginAirport { get; set; }
         [Required]
         public Guid DestinationAirportId { get; set; }
-        public Airport DestinationAirport { get; set; }
+        public AirportDTO? DestinationAirport { get; set; }
         // FK AircraftId
         [Required]
         public Guid AircraftId { get; set; }
-        public Aircraft Aircraft { get; set; }
+        public AircraftDTO? Aircraft { get; set; }
     }
 }
