@@ -15,7 +15,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Aircrafts",
                 columns: table => new
                 {
-                    AircraftId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
                     RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -23,14 +23,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Aircrafts", x => x.AircraftId);
+                    table.PrimaryKey("PK_Aircrafts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Airports",
                 columns: table => new
                 {
-                    AirportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AirportName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     AirportCity = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     AirportCountry = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
@@ -38,7 +38,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Airports", x => x.AirportId);
+                    table.PrimaryKey("PK_Airports", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,7 +91,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         name: "FK_Seats_Aircrafts_AircraftId",
                         column: x => x.AircraftId,
                         principalTable: "Aircrafts",
-                        principalColumn: "AircraftId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -99,7 +99,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "Flights",
                 columns: table => new
                 {
-                    FlightId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FlightCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DepartureDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -110,24 +110,24 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Flights", x => x.FlightId);
+                    table.PrimaryKey("PK_Flights", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Flights_Aircrafts_AircraftId",
                         column: x => x.AircraftId,
                         principalTable: "Aircrafts",
-                        principalColumn: "AircraftId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Flights_Airports_DestinationAirportId",
                         column: x => x.DestinationAirportId,
                         principalTable: "Airports",
-                        principalColumn: "AirportId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Flights_Airports_OriginAirportId",
                         column: x => x.OriginAirportId,
                         principalTable: "Airports",
-                        principalColumn: "AirportId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -191,7 +191,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         name: "FK_Tickets_Flights_FlightId",
                         column: x => x.FlightId,
                         principalTable: "Flights",
-                        principalColumn: "FlightId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tickets_Passengers_PassengerId",
@@ -223,7 +223,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         name: "FK_SeatAssigments_Flights_FlightId",
                         column: x => x.FlightId,
                         principalTable: "Flights",
-                        principalColumn: "FlightId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_SeatAssigments_Seats_SeatId",

@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
-using PrivateBlog.Web.Services;
+using Microsoft.EntityFrameworkCore;
+using Proyecto_Aerolinea.Web.Services;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Entities;
 using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Services.Abstract;
+using System.Linq;
+using static System.Collections.Specialized.BitVector32;
+
 
 namespace Proyecto_Aerolinea.Web.Services.Implementation
 {
@@ -42,6 +47,21 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
         {
             return await GetListAsync<Airport, AirportDTO>();
         }
+
+        public async Task<Response<PaginationResponse<AirportDTO>>> GetPaginatedListAsync(PaginationRequest request)
+        {
+            IQueryable<Airport> query = _context.Airports.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(request.Filter))
+            {
+                // SELECT * FROM Sections WHERE Name LIKE '%FILTER%'
+                query = query.Where(s => s.AirportName.ToLower().Contains(request.Filter.ToLower())
+                                         || s.AirportCity.ToLower().Contains(request.Filter.ToLower()));
+            }
+
+            return await GetPaginationAsync<Airport, AirportDTO>(request, query);
+        }
+
 
     }
 }

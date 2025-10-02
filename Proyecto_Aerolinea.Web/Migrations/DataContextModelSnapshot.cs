@@ -24,7 +24,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Aircraft", b =>
                 {
-                    b.Property<Guid>("AircraftId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -44,14 +44,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AircraftId");
+                    b.HasKey("Id");
 
                     b.ToTable("Aircrafts");
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Airport", b =>
                 {
-                    b.Property<Guid>("AirportId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -74,14 +74,14 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AirportId");
+                    b.HasKey("Id");
 
                     b.ToTable("Airports");
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Flight", b =>
                 {
-                    b.Property<Guid>("FlightId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -110,7 +110,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("FlightId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AircraftId");
 
