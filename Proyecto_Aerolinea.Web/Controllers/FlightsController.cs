@@ -21,7 +21,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
             _otyfService = otyfService;
         }
         // GET: FlightsController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -41,13 +41,13 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         // GET: FlightsController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: FlightsController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -55,20 +55,23 @@ namespace Proyecto_Aerolinea.Web.Controllers
         // POST: FlightsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([FromForm]FlightDTO dto)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
+                _otyfService.Error("No se cumplen con las validaciones");
                 return View();
             }
+            Response<FlightDTO> NewFlight = await _flightService.CreateAsync(dto);
+            if (!NewFlight.Succeed)
+            {
+                _otyfService.Error("No se completo la creacion del vuelo");
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: FlightsController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }
@@ -76,7 +79,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         // POST: FlightsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -89,7 +92,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         // GET: FlightsController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }
@@ -97,7 +100,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         // POST: FlightsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
