@@ -21,10 +21,10 @@ namespace Proyecto_Aerolinea.Web.Controllers
             _otyfService = otyfService;
         }
         // GET: FlightsController
-        public IActionResult Index()
+        /*public IActionResult Index()
         {
             return View();
-        }
+        }*/
 
         [HttpGet]
         public async Task<IActionResult> Available(/*[FromQuery] Pages pages*/)
@@ -67,7 +67,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
             {
                 _otyfService.Error("No se completo la creacion del vuelo");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Available");
         }
 
         // GET: FlightsController/Edit/5
@@ -92,7 +92,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         // GET: FlightsController/Delete/5
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             return View();
         }
@@ -100,16 +100,16 @@ namespace Proyecto_Aerolinea.Web.Controllers
         // POST: FlightsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(Guid id, IFormCollection collection)
         {
-            try
+            var del = await _flightService.DeleteAsync(id);
+            
+            if (!del.Succeed)
             {
-                return RedirectToAction(nameof(Index));
+                _otyfService.Error($"El Vuelo con ID: {id} no se pudo borrar");
+                return RedirectToAction("Available");
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Available");
         }
     }
 }
