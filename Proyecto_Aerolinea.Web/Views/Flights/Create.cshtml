@@ -23,20 +23,39 @@
     <div class="card-body">
         <h4 class="card-title text-primary">Crear Vuelo</h4>
 
-        <form asp-action="Create" method="post" class="row g-3">
+        <form asp-action="Create" method="post">
+            <div class="row g-3">
                 <div class="col-md-12">
                     <div class="form-floating">
                     <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(FlightDTO => FlightDTO.FlightCode)">
                         <label for="floatingName">Codigo de Vuelo</label>
                     </div>
                 </div>
+            </div>
 
+            <div class="row g-3">
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input>
+                        <input asp-for="DepartureDateTime" class="form-control" placeholder="Selecciona fecha y hora de partida">
                         <label for="floatingName">Fecha de Salida</label>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input asp-for="ArrivalDateTime" class="form-control" placeholder="Seleccione fecha y hora de llegada">
+                        <label for="floatingName">Fecha de Llegada</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input asp-for="Status" class="form-control" placeholder="Estado del avion">
+                        <label for="floatingName">Estado</labelfor>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 
