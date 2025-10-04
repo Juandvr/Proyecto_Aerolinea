@@ -7,23 +7,24 @@ namespace Proyecto_Aerolinea.Web.DTOs
     {
         public Guid Id { get; set; }
         [Required, StringLength(50)]
-        public string FlightCode { get; set; }
+        [Display(Name = "El codigo es necesario")]
+        public required string FlightCode { get; set; }
+        [Required(ErrorMessage="El campo {0} es requerido")]
+        public required DateTime DepartureDateTime { get; set; }
         [Required]
-        public DateTime DepartureDateTime { get; set; }
-        [Required]
-        public DateTime ArrivalDateTime { get; set; }
+        public required DateTime ArrivalDateTime { get; set; }
         [Required, StringLength(30)]
-        public string Status { get; set; }
+        public required string Status { get; set; }
         // FKs Airport
         [Required]
         public Guid OriginAirportId { get; set; }
-        public Airport OriginAirport { get; set; }
+        public required Airport OriginAirport { get; set; }
         [Required]
         public Guid DestinationAirportId { get; set; }
-        public Airport DestinationAirport { get; set; }
+        public required Airport DestinationAirport { get; set; }
         // FK AircraftId
         [Required]
         public Guid AircraftId { get; set; }
-        public Aircraft Aircraft { get; set; }
+        public required Aircraft Aircraft { get; set; }
     }
 }

@@ -18,12 +18,12 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<Response<FlightDTO>> CreateAsync(FlightDTO dto)
+        public async Task<Response<FlightDTO>> MyCreateAsync(FlightDTO dto)
         {
             return await CreateAsync<Flight, FlightDTO>(dto);
         }
 
-        public Task<Response<object>> DeleteAsync(Guid id)
+        public Task<Response<object>> MyDeleteAsync(Guid id)
         {
             return DeleteAsync<Flight>(id);
         }
@@ -33,7 +33,7 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             return await EditAsync<Flight, FlightDTO>(dto, dto.Id);
         }
 
-        public async Task<Response<FlightDTO>> GetOneAsync(Guid id)
+        public async Task<Response<FlightDTO>> MyGetOneAsync(Guid id)
         {
             return await GetOneAsync<Flight, FlightDTO>(id);
         }

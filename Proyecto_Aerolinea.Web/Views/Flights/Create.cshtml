@@ -1,0 +1,43 @@
+﻿@model FlightDTO
+
+<div class="page-title dark-background aos-init aos-animate" data-aos="fade" style="background-image: url(assets/img/travel/showcase-8.webp);">
+    <div class="container position-relative">
+        <h1>Nuevo Vuelo</h1>
+        <p>Crea un nuevo vuelo</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-action="Availabel">Tours</a></li>
+                <li class="current">Create</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+        <h2 class="m-0 font-weight-bold text-primary">Vuelo</h2>
+    </div>
+
+    <div class="card-body">
+        <h4 class="card-title text-primary">Crear Vuelo</h4>
+
+        <form asp-action="Create" method="post" class="row g-3">
+                <div class="col-md-12">
+                    <div class="form-floating">
+                    <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(FlightDTO => FlightDTO.FlightCode)">
+                        <label for="floatingName">Codigo de Vuelo</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input>
+                        <label for="floatingName">Fecha de Salida</label>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+</div>

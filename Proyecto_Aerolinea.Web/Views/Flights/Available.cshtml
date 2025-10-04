@@ -10,39 +10,60 @@
         <p>Lista de vuelos</p>
         <nav class="breadcrumbs">
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                 <li class="current">Tours</li>
             </ol>
         </nav>
     </div>
 </div>
 
-<table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Código</th>
-            <th>Fecha de salida</th>
-            <th>Fecha de llegada</th>
-            <th>Estado</th>
-            <th>Aeropuerto de origen</th>
-            <th>Aeropuerto de destino</th>
-            <th>Avión</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var flight in Model)
-        {
-            <tr>
-                <td>@flight.Id</td>
-                <td>@flight.FlightCode</td>
-                <td>@flight.DepartureDateTime</td>
-                <td>@flight.ArrivalDateTime</td>
-                <td>@flight.Status</td>
-                <td>@flight.OriginAirport</td>
-                <td>@flight.DestinationAirport</td>
-                <td>@flight.Aircraft</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <h3 class="m-0 font-weight-bold text-primary col-md-11">Vuelos Disponibles</h3>
+            <div class="col-md-1">
+                <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Código</th>
+                    <th>Fecha de salida</th>
+                    <th>Fecha de llegada</th>
+                    <th>Estado</th>
+                    <th>Aeropuerto de origen</th>
+                    <th>Aeropuerto de destino</th>
+                    <th>Avión</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var flight in Model)
+                {
+                    <tr>
+                        <td>@flight.Id</td>
+                        <td>@flight.FlightCode</td>
+                        <td>@flight.DepartureDateTime</td>
+                        <td>@flight.ArrivalDateTime</td>
+                        <td>@flight.Status</td>
+                        <td>@flight.OriginAirport</td>
+                        <td>@flight.DestinationAirport</td>
+                        <td>@flight.Aircraft</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-Id="@flight.Id" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <form asp-action="Delete" asp-route-Id="@flight.Id" style="display: contents;">
+                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

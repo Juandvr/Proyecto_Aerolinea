@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Aerolinea.Web.Core;
-using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Data;
+using Proyecto_Aerolinea.Web.DTOs;
+using Proyecto_Aerolinea.Web.Models;
 using Proyecto_Aerolinea.Web.Services.Abstract;
 using Proyecto_Aerolinea.Web.Services.Implementation;
 using System.Collections.Generic;
-using Proyecto_Aerolinea.Web.Models;
-using AspNetCoreHero.ToastNotification.Abstractions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Proyecto_Aerolinea.Web.Controllers
 {
@@ -62,7 +63,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
                 _otyfService.Error("No se cumplen con las validaciones");
                 return View();
             }
-            Response<FlightDTO> NewFlight = await _flightService.CreateAsync(dto);
+            Response<FlightDTO> NewFlight = await _flightService.MyCreateAsync(dto);
             if (!NewFlight.Succeed)
             {
                 _otyfService.Error("No se completo la creacion del vuelo");
@@ -71,44 +72,47 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         // GET: FlightsController/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit([FromRoute]Guid id)
         {
-            return View();
+            Response<FlightDTO> edit = await _flightService.MyGetOneAsync(id);
+
+            if (!edit.Succeed)
+            {
+                _otyfService.Error(edit.Message);
+                return RedirectToAction("Availabel");
+            }
+
+            return View(edit.Result);
         }
 
         // POST: FlightsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit([FromForm]FlightDTO dto)
         {
-            try
+            Response<FlightDTO> Update = await _flightService.UpdateAsync(dto);
+            if (!Update.Succeed)
             {
-                return RedirectToAction(nameof(Index));
+                _otyfService.Error(Update.Message);
+                return RedirectToAction("Available");
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FlightsController/Delete/5
-        public IActionResult Delete(Guid id)
-        {
-            return View();
+            _otyfService.Success(Update.Message);
+            return RedirectToAction("Available");
         }
 
         // POST: FlightsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id, IFormCollection collection)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var del = await _flightService.DeleteAsync(id);
+            Response<object> del = await _flightService.MyDeleteAsync(id);
             
             if (!del.Succeed)
             {
                 _otyfService.Error($"El Vuelo con ID: {id} no se pudo borrar");
                 return RedirectToAction("Available");
             }
+            _otyfService.Success($"El Vuelo con ID: {id} se elimino correctamente");
             return RedirectToAction("Available");
         }
     }
