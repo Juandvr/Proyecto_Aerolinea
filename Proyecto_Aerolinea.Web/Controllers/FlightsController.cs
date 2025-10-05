@@ -97,13 +97,13 @@ namespace Proyecto_Aerolinea.Web.Controllers
                 return RedirectToAction("Available");
             }
             _otyfService.Success(Update.Message);
-            return RedirectToAction("Available");
+            return View(dto);
         }
 
         // POST: FlightsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete([FromRoute]Guid id)
         {
             Response<object> del = await _flightService.MyDeleteAsync(id);
             
