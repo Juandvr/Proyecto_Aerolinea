@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card mt-3">
 
     <div class="card-header">
         <h2 class="m-0 font-weight-bold text-primary">Vuelo</h2>
@@ -27,8 +27,9 @@
             <div class="row g-3">
                 <div class="col-md-12">
                     <div class="form-floating">
-                    <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(FlightDTO => FlightDTO.FlightCode)">
-                        <label for="floatingName">Codigo de Vuelo</label>
+                        <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(dto => dto.FlightCode)">
+                        <label asp-for="FlightCode">Codigo de Vuelo</label>
+                        <span asp-validation-for="FlightCode" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -36,14 +37,16 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input asp-for="DepartureDateTime" class="form-control" placeholder="Selecciona fecha y hora de partida">
-                        <label for="floatingName">Fecha de Salida</label>
+                        <input asp-for="DepartureDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DepartureDateTime)">
+                        <label asp-for="DepartureDateTime">Fecha de Salida</label>
+                        <span asp-validation-for="DepartureDateTime" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input asp-for="ArrivalDateTime" class="form-control" placeholder="Seleccione fecha y hora de llegada">
-                        <label for="floatingName">Fecha de Llegada</label>
+                        <input asp-for="ArrivalDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.ArrivalDateTime)">
+                        <label asp-for="ArrivalDateTime">Fecha de Llegada</label>
+                        <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
                     </div>
                 </div>
             </div>
@@ -51,12 +54,52 @@
             <div class="row g-3">
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input asp-for="Status" class="form-control" placeholder="Estado del avion">
-                        <label for="floatingName">Estado</labelfor>
+                        <input asp-for="Status" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Status)">
+                        <label asp-for="Status"></label>
+                        <span asp-validation-for="Status" class="text-danger"></span>
                     </div>
                 </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input asp-for="OriginAirportId" class="form-control" placeholder="@Html.DisplayFor(dto => dto.OriginAirportId)">
+                        <label asp-for="OriginAirportId"></label>
+                        <span class="text-danger" asp-validation-for="OriginAirportId"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input asp-for="DestinationAirportId" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DestinationAirportId)">
+                        <label asp-for="DestinationAirportId"></label>
+                        <span class="text-danger" asp-validation-for="DestinationAirportId"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input asp-for="AircraftId" class="form-control" placeholder="@Html.DisplayFor(dto => dto.AircraftId)">
+                        <label asp-for="AircraftId"></label>
+                        <span class="text-danger" asp-validation-for="AircraftId"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+                <a asp-action="Available" class="btn btn-secondary">Regresar</a>
             </div>
         </form>
     </div>
 
 </div>
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

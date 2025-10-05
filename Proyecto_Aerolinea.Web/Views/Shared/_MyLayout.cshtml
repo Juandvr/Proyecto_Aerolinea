@@ -38,6 +38,7 @@
     <div id="preloader"></div>
 
     @await Html.PartialAsync("_Scripts")
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 
