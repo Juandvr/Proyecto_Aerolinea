@@ -60,24 +60,26 @@
                         <select asp-for="OriginAirportId" class="form-control" asp-items="ViewBag.Airport">
                             <option value="">Seleccione un aeropuerto</option>
                         </select>
-                        <label asp-for="OriginAirportId"></label>
+                        <label asp-for="OriginAirportId">Aeropuerto Origen</label>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input asp-for="DestinationAirportId" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DestinationAirportId)">
-                        <label asp-for="DestinationAirportId"></label>
-                        <span class="text-danger" asp-validation-for="DestinationAirportId"></span>
+                        <select asp-for="DestinationAirportId" class="form-control" asp-items="ViewBag.Airport">
+                            <option value="">Seleccionar Aeropuerto</option>
+                        </select>
+                        <label asp-for="DestinationAirportId">Aeropuerto Destino</label>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-floating">
-                    <input asp-for="AircraftId" class="form-control" placeholder="@Html.DisplayFor(dto => dto.AircraftId)">
-                    <label asp-for="AircraftId"></label>
-                    <span class="text-danger" asp-validation-for="AircraftId"></span>
+                    <select asp-for="AircraftId" class="form-control" asp-items="ViewBag.Aircraft">
+                        <option value="">Seleccionar avion de abordaje</option>
+                    </select>
+                    <label asp-for="AircraftId">Avion de Abordaje</label>
                 </div>
             </div>
 
