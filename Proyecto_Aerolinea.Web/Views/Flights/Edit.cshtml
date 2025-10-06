@@ -33,6 +33,65 @@
                 </div>
             </div>
 
+            <div class="col-md-12">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input asp-for="DepartureDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DepartureDateTime)"/>
+                            <label asp-for="DepartureDateTime"></label>
+                            <span asp-validation-for="DepartureDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input asp-for="ArrivalDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.ArrivalDateTime)"/>
+                            <label asp-for="ArrivalDateTime"></label>
+                            <span asp-validation-for="ArrivalDateTime"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="Status" class="form-control" placeholder="@Html.DisplayFor(dbo => dbo.Status)">
+                    <label asp-for="Status"></label>
+                    <span asp-validation-for="Status"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <select asp-for="OriginAirportId" asp-items="ViewBag.Airport" class="form-control">
+                        <option value="">Seleccionar aeropuerto de rigen</option>
+                    </select>
+                    <label asp-for="OriginAirportId">Aeropuerto Origen</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <select asp-for="DestinationAirportId" asp-items="ViewBag.Airport" class="form-control">
+                        <option value="">Selecciona el aeropuerto de destino</option>
+                    </select>
+                    <label asp-for="DestinationAirportId">Aeropuerto Destino</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <select asp-for="AircraftId" asp-items="ViewBag.Aircraft" class="form-control">
+                        <option value="">Selecciona el avion de abordaje</option>
+                    </select>
+                    <label asp-for="AircraftId">Avion de Abordaje</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button class="btn btn-primary" type="submit">Guardar</button>
+                <a asp-action="Available" class="btn btn-secondary">Regresar</a>
+            </div>
+
         </form>
 
     </div>

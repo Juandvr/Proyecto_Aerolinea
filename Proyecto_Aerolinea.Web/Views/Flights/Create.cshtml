@@ -54,22 +54,24 @@
                 </div>
             </div>
 
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <select asp-for="OriginAirportId" class="form-control" asp-items="ViewBag.Airport">
-                            <option value="">Seleccione un aeropuerto</option>
-                        </select>
-                        <label asp-for="OriginAirportId">Aeropuerto Origen</label>
+            <div class="col-md-12">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <select asp-for="OriginAirportId" class="form-control" asp-items="ViewBag.Airport">
+                                <option value="">Seleccione un aeropuerto</option>
+                            </select>
+                            <label asp-for="OriginAirportId">Aeropuerto Origen</label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <select asp-for="DestinationAirportId" class="form-control" asp-items="ViewBag.Airport">
-                            <option value="">Seleccionar Aeropuerto</option>
-                        </select>
-                        <label asp-for="DestinationAirportId">Aeropuerto Destino</label>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <select asp-for="DestinationAirportId" class="form-control" asp-items="ViewBag.Airport">
+                                <option value="">Seleccionar Aeropuerto</option>
+                            </select>
+                            <label asp-for="DestinationAirportId">Aeropuerto Destino</label>
+                        </div>
                     </div>
                 </div>
             </div>
