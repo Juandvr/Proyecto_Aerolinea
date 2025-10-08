@@ -4,7 +4,7 @@ using Proyecto_Aerolinea.Web.Core;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Abstractions;
 
-namespace PrivateBlog.Web.Services
+namespace Proyecto_Aerolinea.Web.Services
 {
     public class CustomQueryableOperationsService
     {

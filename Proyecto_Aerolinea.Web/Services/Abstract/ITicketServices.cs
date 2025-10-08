@@ -7,9 +7,9 @@ namespace Proyecto_Aerolinea.Web.Services.Abstract
     public interface ITicketServices
     {
         public Task<Response<TicketDTO>> MyCreateAsync(TicketDTO dto);
-        public Task<Response<TicketDTO>> MyGetlistAsync();
+        public Task<Response<List<TicketDTO>>> MyGetlistAsync();
         public Task<Response<TicketDTO>> MyGetOneAsync(Guid id);
         public Task<Response<TicketDTO>> MyUpdateAsync(TicketDTO dto);
-        public Task<Response<TicketDTO>> MyDeleteAsync(Guid id);
+        public Task<Response<object>> MyDeleteAsync(Guid id);
     }
 }
