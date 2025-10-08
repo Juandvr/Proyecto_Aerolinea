@@ -32,7 +32,7 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         // GET: TicketController/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
