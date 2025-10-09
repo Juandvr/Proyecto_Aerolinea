@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Abstractions;
 
-namespace PrivateBlog.Web.Services
+namespace Proyecto_Aerolinea.Web.Services
 {
     public class CustomQueryableOperationsService
     {
@@ -103,7 +104,7 @@ namespace PrivateBlog.Web.Services
             }
         }
 
-        public async Task<Response<List<TDTO>>> GetListAsync<TEntity, TDTO>(IQueryable<TEntity> query = null)
+        public async Task<Response<List<TDTO>>> GetListAsync<TEntity, TDTO>(IQueryable<TEntity>? query = null)
         where TEntity : class, IId
         {
             try
@@ -122,6 +123,38 @@ namespace PrivateBlog.Web.Services
             {
                 return Response<List<TDTO>>.Failure(ex);
             }
+        }
+        public async Task<Response<PaginationResponse<TDTO>>> GetPaginationAsync<TEntity, TDTO>(
+        PaginationRequest request, IQueryable<TEntity>? query = null)
+        where TEntity : class
+        where TDTO : class
+        {
+            try
+            {
+                if (query is null)
+                {
+                    query = _context.Set<TEntity>();
+                }
+
+                PagedList<TEntity> list = await PagedList<TEntity>.ToPagedListAsync(query, request);
+
+                PaginationResponse<TDTO> response = new PaginationResponse<TDTO>
+                {
+                    List = _mapper.Map<PagedList<TDTO>>(list),
+                    TotalCount = list.TotalCount,
+                    RecordsPerPage = list.RecordsPerPage,
+                    CurrentPage = list.CurrentPage,
+                    TotalPages = list.TotalPages,
+                    Filter = request.Filter
+                };
+
+                return Response<PaginationResponse<TDTO>>.Success(response);
+            }
+            catch (Exception ex)
+            {
+                return Response<PaginationResponse<TDTO>>.Failure(ex);
+            }
+
         }
     }
 }

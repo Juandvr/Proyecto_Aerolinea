@@ -1,5 +1,5 @@
 ﻿@using Proyecto_Aerolinea.Web.DTOs
-@model List<AirportDTO>
+@model Proyecto_Aerolinea.Web.Core.Pagination.PaginationResponse<Proyecto_Aerolinea.Web.DTOs.AirportDTO>
 
 @{
     ViewData["Title"] = "Aeropuertos";
@@ -12,32 +12,54 @@
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="index.html">Home</a></li>
-                <li class="current">Tours</li>
+                <li class="current">Aeropuertos</li>
             </ol>
         </nav>
     </div>
 </div>
 
-<table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>AirportId</th>
-            <th>Nombre</th>
-            <th>Ciudad</th>
-            <th>País</th>
-            <th>IATA</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var airport in Model)
-        {
+<!-- Tabla de Aeropuertos -->
+@if (Model.List.Count == 0)
+{
+    <p>No hay aeropuertos disponibles.</p>
+}
+else
+{
+    <table class="table table-bordered mt-3">
+        <thead>
             <tr>
-                <td>@airport.Id</td>
-                <td>@airport.AirportName</td>
-                <td>@airport.AirportCity</td>
-                <td>@airport.AirportCountry</td>
-                <td>@airport.IATACode</td>
+                <th>AirportId</th>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>País</th>
+                <th>IATA</th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var airport in Model.List)
+            {
+                <tr>
+                    <td>@airport.Id</td>
+                    <td>@airport.AirportName</td>
+                    <td>@airport.AirportCity</td>
+                    <td>@airport.AirportCountry</td>
+                    <td>@airport.IATACode</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Paginación -->
+@if (Model.TotalPages > 1)
+{
+    <div class="pagination mt-4">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <a href="@Url.Action("Index", "Airports", new { pageNumber = i, pageSize = Model.RecordsPerPage, filter = Model.Filter })"
+               class="btn btn-link @((i == Model.CurrentPage) ? "active" : "")">
+                @i
+            </a>
         }
-    </tbody>
-</table>
+    </div>
+}
