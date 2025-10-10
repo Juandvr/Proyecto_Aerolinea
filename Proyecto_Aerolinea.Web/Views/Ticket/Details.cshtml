@@ -1,0 +1,47 @@
+﻿@model TicketDTO
+
+<div class="page-title dark-background aos-init aos-animate" data-aos="fade" style="background-image: url(assets/img/travel/showcase-8.webp);">
+    <div class="container position-relative">
+        <h1>Vuelos</h1>
+        <p>Lista de vuelos</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-action="Index"></a>Ticket</li>
+                <li class="current">Details</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>QRCode</th>
+            <th>Price</th>
+            <th>ReservationId</th>
+            <th>Reservation</th>
+            <th>FlightId</th>
+            <th>Flight</th>
+            <th>PassengerId</th>
+            <th>Passenger</th>
+            <th>SeatAssignment</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.QRCode</td>
+            <td>@Model.Price</td>
+            <td>@Model.ReservationId</td>
+            <td>@Model.Reservation</td>
+            <td>@Model.FlightId</td>
+            <td>@Model.Flight</td>
+            <td>@Model.PassengerId</td>
+            <td>@Model.Passenger</td>
+            <td>@Model.SeatAssignment</td>
+        </tr>
+    </tbody>
+</table>

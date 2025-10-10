@@ -34,10 +34,10 @@ namespace Proyecto_Aerolinea.Web
             return builder;
         }
 
-        public static async Task GetPages()
+        /*public static async Task GetPages()
         {
 
-        }
+        }*/
 
         public static void AddServices(WebApplicationBuilder builder)
         {

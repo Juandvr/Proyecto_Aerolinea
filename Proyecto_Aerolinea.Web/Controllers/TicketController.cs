@@ -37,6 +37,12 @@ namespace Proyecto_Aerolinea.Web.Controllers
             return View();
         }
 
+        //GET
+        public IActionResult Details([FromRoute]TicketDTO dto)
+        {
+            return View(dto);
+        }
+
         // POST: TicketController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
