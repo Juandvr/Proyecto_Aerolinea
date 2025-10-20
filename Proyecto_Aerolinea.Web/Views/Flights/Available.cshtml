@@ -58,7 +58,9 @@
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
                             <form asp-action="Delete" asp-route-Id="@flight.Id" style="display: contents;">
-                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-sm btn-danger btnDelete">
+                                    <i class="bi bi-trash-fill" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Eliminar"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -67,3 +69,27 @@
         </table>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function(){
+            $(".btnDelete").click(function(event){
+                event.preventDefault();
+
+                Swal.fire({
+                icon: "question",
+                title: "Advertencia",
+                text: "Si eliminas el vuelo no podra revertirse el cambio",
+                showCancelButton: true
+                }).then((result) => {
+                    if (result.IsConfirmed){
+                        const form = $(this).closest("form");
+                        form.submit();
+                    }
+                });
+
+            });
+        });
+    </script>
+}

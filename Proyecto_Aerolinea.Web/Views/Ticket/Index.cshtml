@@ -2,8 +2,8 @@
 
 <div class="page-title dark-background aos-init aos-animate" data-aos="fade" style="background-image: url(assets/img/travel/showcase-8.webp);">
     <div class="container position-relative">
-        <h1>Vuelos</h1>
-        <p>Lista de vuelos</p>
+        <h1>Tickets</h1>
+        <p>Historial de Tickets</p>
         <nav class="breadcrumbs">
             <ol>
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
@@ -15,8 +15,11 @@
 
 <div class="card mt-3">
 
-    <div class="card-header">
-        <h2 class="text-primary">Ticket</h2>
+    <div class="card-header row">
+        <h2 class="text-primary col-md-11">Ticket</h2>
+        @* <div class="col-md-1">
+            <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+        </div> *@
     </div>
 
     <div class="card-body">
