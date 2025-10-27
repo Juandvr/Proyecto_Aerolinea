@@ -1,8 +1,9 @@
-﻿/*using Proyecto_Aerolinea.Web.Core.Pagination.Abstraction;
+﻿using Proyecto_Aerolinea.Web.Core.Pagination.Abstraction;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 
 namespace Proyecto_Aerolinea.Web.Core.Pagination
 {
-    public class PaginatiaonResponse : IPagination
+    public class PaginatiaonResponse<T> : IPagination
     {
         public int CurrentPages { get ; set ; }
         public int TotalPages { get ; set ; }
@@ -18,8 +19,39 @@ namespace Proyecto_Aerolinea.Web.Core.Pagination
             {
                 List<int> pages = new List<int>();
                 int half = VisiblePages / 2;
+                int star = CurrentPages - half + 1 - (VisiblePages % 2);
+                int end = CurrentPages + half;
+
+                int vPages = VisiblePages;
+
+                if (vPages > TotalPages)
+                {
+                    vPages = TotalPages;
+                }
+
+                if (star <= 0)
+                {
+                    star = 1;
+                    end = vPages;
+                }
+
+                if (end > TotalPages)
+                {
+                    star = TotalPages - vPages + 1;
+                    end = TotalPages;
+                }
+
+                int itPage = star;
+
+                while (itPage <=end)
+                {
+                    pages.Add(itPage);
+                    itPage++;
+                }
+
+                return pages;
             }
         }
-
+        public PagedList<T> List { get; set; }
     }
-}*/
+}
