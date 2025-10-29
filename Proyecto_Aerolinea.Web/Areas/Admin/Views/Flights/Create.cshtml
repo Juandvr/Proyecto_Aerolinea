@@ -4,84 +4,120 @@
     ViewData["Title"] = "Añadir Vuelo";
 }
 
-<div class="card">
+<body>
+    <div class="container-fluid" style="background-color: #ecf0f1; min-height: 100vh; padding: 40px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 30px;">
+                        <h3 class="m-0 font-weight-bold" style="color: white; display: flex; align-items: center;">
+                            <span style="font-size: 35px; margin-right: 15px;">✈️</span>
+                            Añadir Nuevo Vuelo
+                        </h3>
+                        <small style="color: rgba(255,255,255,0.9);">Programa un nuevo vuelo en el sistema</small>
+                    </div>
+                    <div class="card-body" style="padding: 40px;">
+                        <form asp-action="Create" method="POST" class="row g-4">
 
-    <div class="card-header">
-        <h3 class="m-0 font-weight-bold text-primary">Añadir vuelo</h3>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(dto => dto.FlightCode)" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                    <label asp-for="FlightCode" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-tag-fill" style="margin-right: 5px;"></i> Código de Vuelo
+                                    </label>
+                                    <span asp-validation-for="FlightCode" class="text-danger" style="font-size: 14px; margin-top: 5px; display: block;"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input asp-for="DepartureDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DepartureDateTime)" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                    <label asp-for="DepartureDateTime" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-calendar-check" style="margin-right: 5px;"></i> Fecha y Hora de Salida
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input asp-for="ArrivalDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.ArrivalDateTime)" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                    <label asp-for="ArrivalDateTime" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-calendar-event" style="margin-right: 5px;"></i> Fecha y Hora de Llegada
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input asp-for="Status" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Status)" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                    <label asp-for="Status" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-info-circle-fill" style="margin-right: 5px;"></i> Estado
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select asp-for="OriginAirportId" asp-items="ViewBag.Airports" class="form-control" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                        <option value="">Seleccione un aeropuerto</option>
+                                    </select>
+                                    <label asp-for="OriginAirportId" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-geo-alt-fill" style="margin-right: 5px;"></i> Aeropuerto de Origen
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select asp-for="DestinationAirportId" asp-items="ViewBag.Airports" class="form-control" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                        <option value="">Seleccione un aeropuerto</option>
+                                    </select>
+                                    <label asp-for="DestinationAirportId" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-pin-map-fill" style="margin-right: 5px;"></i> Aeropuerto de Destino
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select asp-for="AircraftId" asp-items="ViewBag.Aircrafts" class="form-control" style="border: 2px solid #e0e0e0; border-radius: 10px; padding: 20px 15px; font-size: 16px;">
+                                        <option value="">Seleccione un avión</option>
+                                    </select>
+                                    <label asp-for="AircraftId" style="color: #7f8c8d; padding-left: 15px;">
+                                        <i class="bi bi-airplane" style="margin-right: 5px;"></i> Avión Asignado
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center mt-4">
+                                <button class="btn btn-lg" type="submit" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; padding: 15px 40px; font-weight: bold; margin-right: 10px; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3); transition: all 0.3s ease;">
+                                    <i class="bi bi-save"></i> Guardar Vuelo
+                                </button>
+                                <a asp-action="Index" class="btn btn-lg" style="background: #95a5a6; color: white; border: none; border-radius: 12px; padding: 15px 40px; font-weight: bold; box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3); transition: all 0.3s ease;">
+                                    <i class="bi bi-arrow-left"></i> Volver
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</body>
 
-    <div class="card-body mt-3">
+<style>
+    .form-control:focus {
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25) !important;
+    }
 
-        <form asp-action="Create" method="POST" class="row g-3">
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(dto => dto.FlightCode)">
-                    <label asp-for="FlightCode"></label>
-                    <span asp-validation-for="FlightCode" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <input asp-for="DepartureDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DepartureDateTime)">
-                    <label asp-for="DepartureDateTime"></label>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <input asp-for="ArrivalDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.ArrivalDateTime)">
-                    <label asp-for="ArrivalDateTime"></label>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <input asp-for="Status" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Status)">
-                    <label asp-for="Status"></label>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <select asp-for="OriginAirportId" asp-items="ViewBag.Airports" class="form-control">
-                        <option value="">Seleccione un aeropuerto</option>
-                    </select>
-                    <label asp-for="OriginAirportId"></label>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <select asp-for="DestinationAirportId" asp-items="ViewBag.Airports" class="form-control">
-                        <option value="">Seleccione un aeropuerto</option>
-                    </select>
-                    <label asp-for="DestinationAirportId"></label>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <select asp-for="AircraftId" asp-items="ViewBag.Aircrafts" class="form-control">
-                        <option value="">Seleccione un avion</option>
-                    </select>
-                    <label asp-for="AircraftId"></label>
-                </div>
-            </div>
-
-            <div class="text-center mt-3">
-                <button class="btn btn-primary" type="submit">Guardar</button>
-                <a asp-action="Index" class="btn btn-secondary">Volver</a>
-            </div>
-
-        </form>
-
-    </div>
-</div>
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
+    }
+</style>
 
 @section Scripts {
-
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
