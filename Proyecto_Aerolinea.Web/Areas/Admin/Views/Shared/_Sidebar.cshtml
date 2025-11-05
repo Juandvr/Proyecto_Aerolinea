@@ -1,4 +1,20 @@
-﻿<nav class="navbar navbar-dark bg-dark">
+﻿@using Proyecto_Aerolinea.Web.Data.Entities
+@inject Proyecto_Aerolinea.Web.Services.Abstract.IUserService _userService
+
+@{
+    User? user;
+
+    try
+    {
+        user = await _userService.GetUserByEmailAsync(User.Identity.Name);
+    }
+    catch
+    {
+        user = null;
+    }
+}
+
+<nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" asp-area="default" asp-controller="Home" asp-action="Index">Volver a la pagina</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
@@ -6,10 +22,30 @@
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @user.FullName
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" asp-area="default" asp-action="UpdateUser" asp-controller="Account">
+                                <i class="bi bi-gear"></i>
+                                <span>Editar</span>
+                        </a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" asp-area="default" asp-action="Logout" asp-controller="Account">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Cerrar sesión</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
@@ -17,18 +53,6 @@
                     <li><a asp-area="Admin" asp-controller="Airports" asp-action="Index">Gestionar Aeropuertos</a></li>
                     <li><a asp-area="Admin" asp-controller="Aircrafts" asp-action="Index">Gestionar Aviones</a></li>
                     <li><a asp-area="Admin" asp-controller="Flights" asp-action="Index">Gestionar Vuelos</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>

@@ -28,7 +28,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            Response<List<FlightDTO>> response = await _Flightservice.GetListAsync();
+            Response<List<FlightDTO>> response = await _Flightservice.MyGetListAsync();
 
             if (!response.Succeed)
             {

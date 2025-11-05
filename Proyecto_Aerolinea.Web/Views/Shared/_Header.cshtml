@@ -1,4 +1,20 @@
-﻿<header id="header" class="header d-flex align-items-center fixed-top">
+﻿@using Proyecto_Aerolinea.Web.Data.Entities
+@inject Proyecto_Aerolinea.Web.Services.Abstract.IUserService _userService
+
+@{
+    User? user;
+
+    try
+    {
+        user = await _userService.GetUserByEmailAsync(User.Identity.Name);
+    }
+    catch
+    {
+        user = null;
+    }
+}
+
+<header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
         <a asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center me-auto me-xl-0">
@@ -52,8 +68,37 @@
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
-
-        <a class="btn-getstarted" href="destiantios.html">Get Started</a>
+        @if (user is not null)
+        {
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <!--<img src="~/assets/img/person/avatar.png" alt="Profile" class="rounded-circle">-->
+                <span class="d-none d-md-block dropdown-toggle ps-2">@user.FirstName.Substring(0, 1) . @user.LastName</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header"">
+                            <span>@user.ProjectRole.Name</span>
+                        </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" asp-action="UpdateUser" asp-controller="Account">
+                        <i class="bi bi-gear"></i>
+                        <span>Editar</span>
+                    </a>
+                </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" asp-action="Logout" asp-controller="Account">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        }
+        else
+        {
+            <a class="btn-getstarted" asp-controller="Account" asp-action="Login">Get Started</a>
+        }
 
     </div>
 </header>

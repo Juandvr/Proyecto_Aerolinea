@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Data.Entities;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Proyecto_Aerolinea.Web.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        public DbSet<User> Users { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
@@ -18,9 +19,16 @@ namespace Proyecto_Aerolinea.Web.Data
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Airport> Airports { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<ProjectRole> ProjectRoles { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ConfigureIndexes(modelBuilder);
+
+            ConfigureKeys(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
 
             // Airport <-> Flight
@@ -85,13 +93,32 @@ namespace Proyecto_Aerolinea.Web.Data
                 .WithMany(r => r.Payments)
                 .HasForeignKey(p => p.ReservationId)
                 .OnDelete(DeleteBehavior.Cascade);
-            // Reservation <-> User
-            modelBuilder.Entity<Reservation>()
-                .HasOne(r => r.User)
-                .WithMany(u => u.Reservations)
-                .HasForeignKey(r => r.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
 
+        }
+
+        private void ConfigureKeys(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RolePermission>().HasKey(rp => new { rp.PermissionId, rp.RoleId });
+
+            modelBuilder.Entity<RolePermission>().HasOne(rp => rp.Role)
+                                            .WithMany(r => r.RolePermissions)
+                                            .HasForeignKey(rp => rp.RoleId);
+
+            modelBuilder.Entity<RolePermission>().HasOne(rp => rp.Permission)
+                                            .WithMany(p => p.RolePermissions)
+                                            .HasForeignKey(rp => rp.PermissionId);
+        }
+
+        private void ConfigureIndexes(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProjectRole>().HasIndex(r => r.Name)
+                                             .IsUnique();
+
+            modelBuilder.Entity<User>().HasIndex(u => u.Document)
+                                  .IsUnique();
+
+            modelBuilder.Entity<Permission>().HasIndex(p => p.Name)
+                                        .IsUnique();
         }
     }    
 }
