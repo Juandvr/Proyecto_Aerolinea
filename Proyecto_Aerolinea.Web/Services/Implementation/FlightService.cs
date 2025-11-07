@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Entities;
 using Proyecto_Aerolinea.Web.DTOs;
@@ -42,5 +43,18 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             return await GetListAsync<Flight, FlightDTO>();
         }
 
+        public async Task<Response<PaginationResponse<FlightDTO>>> MyPagination(PaginationRequest request)
+        {
+            IQueryable<Flight> query = _context.Flights.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(request.Filter))
+            {
+                // SELECT * FROM Sections WHERE Name LIKE '%FILTER%'
+                query = query.Where(s => s.FlightCode.ToLower().Contains(request.Filter.ToLower())
+                || s.Status.ToLower().Contains(request.Filter.ToLower()));
+            }
+
+            return await Pagination<Flight, FlightDTO>(request, query);
+        }
     }
 }

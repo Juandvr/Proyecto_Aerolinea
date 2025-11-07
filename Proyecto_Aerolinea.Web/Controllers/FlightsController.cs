@@ -22,21 +22,15 @@ namespace Proyecto_Aerolinea.Web.Controllers
             _flightService=flightService;
             _otyfService = otyfService;
         }
-        // GET: FlightsController
-        /*public IActionResult Index()
-        {
-            return View();
-        }*/
-
         [HttpGet]
         public async Task<IActionResult> Available()
         {
             PaginationRequest request = new PaginationRequest
             {
                 Pages = 1,
-                RecordsPerPages = 15,
+                RecordsPerPages = 2,
             };
-            Response</*PaginationResponse*/List<FlightDTO>> response = await _flightService.MyGetListAsync();
+            Response<PaginationResponse<FlightDTO>> response = await _flightService.MyPagination(request);
 
             if (!response.Succeed)
             {

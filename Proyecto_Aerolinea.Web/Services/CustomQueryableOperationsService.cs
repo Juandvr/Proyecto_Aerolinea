@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Abstractions;
 
@@ -123,6 +124,40 @@ namespace Proyecto_Aerolinea.Web.Services
                 return Response<List<TDTO>>.Failure(ex);
             }
         }
-        //public async Task<Response<>>
+
+        public async Task<Response<PaginationResponse<TDTO>>> Pagination<TEntity, TDTO>(PaginationRequest request, IQueryable<TEntity> query = null) 
+        where TEntity : class
+        where TDTO : class
+        {
+            try
+            {
+                if (query is null)
+                {
+                    query = _context.Set<TEntity>();
+                }
+
+                PagedList<TEntity> list = await PagedList<TEntity>.ToPagedListAsync(query, request);
+
+                PaginationResponse<TDTO> response = new PaginationResponse<TDTO>
+                {
+                    List = _mapper.Map<PagedList<TDTO>>(list),
+                    CurrentPages = list.CurrentPages,
+                    TotalPages = list.TotalPages,
+                    TotalCount = list.TotalCount,
+                    RecordsPerPages = list.RecordsPerPages,
+                    Filter = request.Filter
+                };
+
+                return new Response<PaginationResponse<TDTO>>
+                {
+                    Result = response,
+                    Succeed = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return Response<PaginationResponse<TDTO>>.Failure(ex);
+            }
+        }
     }
 }
