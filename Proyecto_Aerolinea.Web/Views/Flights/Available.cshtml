@@ -1,4 +1,4 @@
-﻿@model List<FlightDTO>
+﻿@model PaginationResponse<FlightDTO>
 
 @{
     ViewData["Title"] = "Vuelos";
@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var flight in Model)
+                @foreach (var flight in Model.List)
                 {
                     <tr>
                         <td>@flight.Id</td>

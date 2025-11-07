@@ -3,7 +3,7 @@ using Proyecto_Aerolinea.Web.Core.Pagination;
 
 namespace Proyecto_Aerolinea.Web.Core.Pagination
 {
-    public class PaginatiaonResponse<T> : IPagination
+    public class PaginationResponse<T> : IPagination
     {
         public int CurrentPages { get ; set ; }
         public int TotalPages { get ; set ; }

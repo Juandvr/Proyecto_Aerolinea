@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Models;
@@ -28,9 +29,14 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }*/
 
         [HttpGet]
-        public async Task<IActionResult> Available(/*[FromQuery] Pages pages*/)
+        public async Task<IActionResult> Available()
         {
-            Response<List<FlightDTO>> response = await _flightService.MyGetListAsync();
+            PaginationRequest request = new PaginationRequest
+            {
+                Pages = 1,
+                RecordsPerPages = 15,
+            };
+            Response</*PaginationResponse*/List<FlightDTO>> response = await _flightService.MyGetListAsync();
 
             if (!response.Succeed)
             {
