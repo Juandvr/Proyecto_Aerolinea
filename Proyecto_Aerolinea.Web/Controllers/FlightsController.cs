@@ -23,13 +23,8 @@ namespace Proyecto_Aerolinea.Web.Controllers
             _otyfService = otyfService;
         }
         [HttpGet]
-        public async Task<IActionResult> Available()
+        public async Task<IActionResult> Available([FromQuery]PaginationRequest request)
         {
-            PaginationRequest request = new PaginationRequest
-            {
-                Pages = 1,
-                RecordsPerPages = 2,
-            };
             Response<PaginationResponse<FlightDTO>> response = await _flightService.MyPagination(request);
 
             if (!response.Succeed)

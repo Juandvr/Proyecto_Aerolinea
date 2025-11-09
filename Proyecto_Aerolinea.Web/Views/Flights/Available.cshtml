@@ -26,7 +26,33 @@
             </div>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body mt-3">
+
+        <form asp-action="Available" class="navbar-search" method="get">
+            <input type="hidden" name="Page" value="@Model.CurrentPages"></input>
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <select name="RecordPerPages" class="form-select bg-light border-0 small" asp-for="RecordsPerPages">
+                        <option value="5" selected="@(Model.RecordsPerPages == 5)">5</option>
+                        <option value="15" selected="@(Model.RecordsPerPages == 15)">15</option>
+                        <option value="30" selected="@(Model.RecordsPerPages == 25)">30</option>
+                        <option value="40" selected="@(Model.RecordsPerPages == 35)">40</option>
+                        <option value="50" selected="@(Model.RecordsPerPages == 50)">50</option>
+                    </select>
+                </div>
+
+                <div class="col-md-10">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control bg-light border-0 small" asp-for="Filter"
+                        placeholder="Bsucar..." aria-label="search"
+                        />
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
@@ -67,6 +93,66 @@
                 }
             </tbody>
         </table>
+
+        <nav aria-label="Page navigation example">
+            <ol class="pagination justify-content-center">
+                @* Primero *@
+                <li class="page-item">
+                    <a class="page-link @(Model.CurrentPages == 1 ? "disabled" : "")" asp-action="Available"
+                        asp-route-Pages="1"
+                        asp-route-RecordsPerPages="@Model.RecordsPerPages"
+                        asp-route-Filter="@Model.Filter"
+                    >
+                        <i class="bi bi-chevron-double-left"></i>
+                    </a>
+                </li>
+
+                @* Anterior *@
+                <li class="page-item">
+                    <a class="page-link @(!Model.hasPrevious ? "disabled" : "")" asp-action="Available"
+                        asp-route-Pages="@(Model.CurrentPages - 1)" asp-route-RecordsPerPages="@Model.RecordsPerPages"
+                        asp-route-Filter="@Model.Filter"
+                    >
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+
+                @* Paginas *@
+                @foreach(int page in Model.Pages)
+                {
+                    <li class="page-item">
+                        <a class="page-link @(Model.CurrentPages == page ? "disabled" : "")" asp-action="Available"
+                           asp-route-Pages="@(page)" asp-route-RecordsPerPages="@Model.RecordsPerPages"
+                           asp-route-Filter="@Model.Filter"
+                        >
+                           @(page)
+                        </a>
+                    </li>                    
+                }
+
+                @* Next *@
+                <li class="page-item">
+                    <a class="page-link @(!Model.hasNext ? "disabled" : "")" asp-action="Available"
+                        asp-route-Pages="@(Model.CurrentPages + 1)"
+                        asp-route-RecordsPerPages="@Model.RecordsPerPages"
+                        asp-route-Filter="@Model.Filter"
+                    >
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+
+                @* Ultimo *@
+                <li class="page-item">
+                    <a class="page-link @(Model.CurrentPages == Model.TotalPages ? "disabled" : "")" asp-action="Available"
+                        asp-route-Pages="@Model.TotalPages"
+                        asp-route-RecordsPerPages="@Model.RecordsPerPages"
+                        asp-route-Filter="@Model.Filter"
+                    >
+                        <i class="bi bi-chevron-double-right"></i>
+                    </a>
+                </li>
+            </ol>
+        </nav>
     </div>
 </div>
 
