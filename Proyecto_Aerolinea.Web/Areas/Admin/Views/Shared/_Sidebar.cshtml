@@ -1,36 +1,65 @@
-﻿<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" asp-area="default" asp-controller="Home" asp-action="Index">Volver a la pagina</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li><a asp-area="Admin" asp-controller="Airports" asp-action="Index">Gestionar Aeropuertos</a></li>
-                    <li><a asp-area="Admin" asp-controller="Aircrafts" asp-action="Index">Gestionar Aviones</a></li>
-                    <li><a asp-area="Admin" asp-controller="Flights" asp-action="Index">Gestionar Vuelos</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
+﻿<header>
+    <nav class="navbar navbar-dark" style="background-color: #2c3e50;">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="default" asp-controller="Home" asp-action="Index">
+                ← Volver a la página
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: #2c3e50;">
+                <div class="offcanvas-header" style="border-bottom: 2px solid #34495e;">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Panel Admin</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                        <li class="nav-item mb-2">
+                            <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Home" asp-action="Index" style="background-color: #3498db; border-radius: 5px; padding: 10px;">
+                                🏠 Inicio
+                            </a>
+                        </li>
+
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Airports" asp-action="Index" style="padding: 10px;">
+                                ✈️ Gestionar Aeropuertos
+                            </a>
+                        </li>
+
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Aircrafts" asp-action="Index" style="padding: 10px;">
+                                🛩️ Gestionar Aviones
+                            </a>
+                        </li>
+
+                        <li class="nav-item mb-2">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Flights" asp-action="Index" style="padding: 10px;">
+                                🌍 Gestionar Vuelos
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown mt-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 10px;">
+                                ⚙️ Más opciones
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="#">Configuración</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
+</header>
+
+<style>
+    .nav-link:hover {
+        background-color: #34495e;
+        border-radius: 5px;
+    }
+</style>

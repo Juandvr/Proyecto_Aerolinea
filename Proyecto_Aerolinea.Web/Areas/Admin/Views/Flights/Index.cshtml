@@ -2,87 +2,123 @@
 @model List<FlightDTO>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vuelos";
 }
 
-<div class="card">
-
-    <div class="card-header">
-
-        <div class="row">
-            <h3 class="m-0 font-weight-bold text-primary col-md-11">Vuelos</h3>
-            <div class="col-md-1">
-                <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+<div class="card" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin: 20px;">
+    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 25px;">
+        <div class="row align-items-center">
+            <div class="col-md-10 col-8">
+                <h3 class="m-0 font-weight-bold" style="color: white; display: flex; align-items: center;">
+                    <span style="font-size: 35px; margin-right: 15px;">✈️</span>
+                    Gestión de Vuelos
+                </h3>
+                <small style="color: rgba(255,255,255,0.9);">Administra todos los vuelos programados</small>
+            </div>
+            <div class="col-md-2 col-4 text-end">
+                <a asp-action="Create" class="btn btn-light" style="border-radius: 10px; padding: 10px 15px; font-weight: bold; box-shadow: 0 3px 10px rgba(0,0,0,0.2); white-space: nowrap;">
+                    <i class="bi bi-plus-circle"></i> Nuevo
+                </a>
             </div>
         </div>
     </div>
-
-    <div class="card-body mt-3">
-        <table class="table table-bordered mt-3">
-            <thead>
+    <div class="card-body mt-3" style="padding: 30px;">
+        <table class="table table-hover mt-3" style="border-radius: 10px; overflow: hidden;">
+            <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                 <tr>
-                    <th>Id</th>
-                    <th>Código</th>
-                    <th>Fecha de salida</th>
-                    <th>Fecha de llegada</th>
-                    <th>Estado</th>
-                    <th>Aeropuerto de origen</th>
-                    <th>Aeropuerto de destino</th>
-                    <th>Avion</th>
-                    <th></th>
+                    <th style="padding: 15px;">Id</th>
+                    <th style="padding: 15px;">Código</th>
+                    <th style="padding: 15px;">Fecha de salida</th>
+                    <th style="padding: 15px;">Fecha de llegada</th>
+                    <th style="padding: 15px;">Estado</th>
+                    <th style="padding: 15px;">Aeropuerto de origen</th>
+                    <th style="padding: 15px;">Aeropuerto de destino</th>
+                    <th style="padding: 15px;">Avión</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var flight in Model)
                 {
-                    <tr>
-                        <td>@flight.Id</td>
-                        <td>@flight.FlightCode</td>
-                        <td>@flight.DepartureDateTime</td>
-                        <td>@flight.ArrivalDateTime</td>
-                        <td>@flight.Status</td>
-                        <td>@flight.OriginAirport.AirportName</td>
-                        <td>@flight.DestinationAirport.AirportName</td>
-                        <td>@flight.Aircraft.Model</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-Id="@flight.Id" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>
-                            <form asp-action="Delete" asp-route-Id="@flight.Id" style="display: contents;">
-                                <button class="btn btn-sm btn-danger btnDelete"><i class="bi bi-trash-fill"></i></button>
+                    <tr style="background-color: white; transition: all 0.3s ease;">
+                        <td style="padding: 15px; vertical-align: middle;">
+                            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 5px 12px; border-radius: 8px; font-weight: bold;">
+                                @flight.Id
+                            </span>
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle; font-weight: 500;">
+                            <span style="color: #667eea; font-weight: bold;">@flight.FlightCode</span>
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle; color: #2c3e50;">
+                            🛫 @flight.DepartureDateTime
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle; color: #2c3e50;">
+                            🛬 @flight.ArrivalDateTime
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle;">
+                            <span style="background-color: #2ecc71; color: white; padding: 5px 12px; border-radius: 8px; font-weight: 500;">
+                                @flight.Status
+                            </span>
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle;">
+                            <span style="background-color: #f8f9fa; padding: 5px 12px; border-radius: 8px; color: #2c3e50;">
+                                📍 @flight.OriginAirport.AirportName
+                            </span>
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle;">
+                            <span style="background-color: #f8f9fa; padding: 5px 12px; border-radius: 8px; color: #2c3e50;">
+                                📍 @flight.DestinationAirport.AirportName
+                            </span>
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle; color: #7f8c8d;">
+                            🛩️ @flight.Aircraft.Model
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle; text-align: center;">
+                            <a asp-action="Edit" asp-route-Id="@flight.Id" class="btn btn-sm" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 8px; padding: 8px 15px; margin-right: 5px; transition: all 0.3s ease;">
+                                <i class="bi bi-pencil-fill"></i> Editar
+                            </a>
+                            <form asp-action="Delete" asp-route-Id="@flight.Id" style="display: inline;">
+                                <button class="btn btn-sm btnDelete" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border: none; border-radius: 8px; padding: 8px 15px; transition: all 0.3s ease;">
+                                    <i class="bi bi-trash-fill"></i> Eliminar
+                                </button>
                             </form>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-
     </div>
 </div>
 
+<style>
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa !important;
+        transform: scale(1.01);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+    }
+</style>
+
 @section Scripts {
     <script>
-
         $(document).ready(function() {
-
             $('.btnDelete').click(function(event) {
-
                 event.preventDefault();
-
                 Swal.fire({
                   icon: "question",
                   title: "¿Desea eliminar la sección?",
                   text: "No podrá revertirlo",
                   showCancelButton: true
                 }).then((result) => {
-
                     if (result.isConfirmed) {
-
                         const form = $(this).closest('form');
-
                         form.submit();
                     }
                 });
             });
         });
-
     </script>
 }
