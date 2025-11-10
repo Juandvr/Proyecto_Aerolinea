@@ -29,7 +29,41 @@ namespace Proyecto_Aerolinea.Web.Data.Seeders
             }
 
             await _context.SaveChangesAsync();
+
+            // Asegurar que exista el rol "Admin"
+            var adminRole = await _context.ProjectRoles.FirstOrDefaultAsync(r => r.Name == "Admin");
+            if (adminRole == null)
+            {
+                adminRole = new ProjectRole
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Admin"
+                };
+                await _context.ProjectRoles.AddAsync(adminRole);
+                await _context.SaveChangesAsync();
+            }
+
+            var allPermissions = await _context.Permissions.ToListAsync();
+
+            foreach (var permission in allPermissions)
+            {
+                bool alreadyLinked = await _context.RolePermissions
+                    .AnyAsync(rp => rp.RoleId == adminRole.Id && rp.PermissionId == permission.Id);
+
+                if (!alreadyLinked)
+                {
+                    await _context.RolePermissions.AddAsync(new RolePermission
+                    {
+                        RoleId = adminRole.Id,
+                        PermissionId = permission.Id
+                    });
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
         }
+        
 
         // -------------------------
         // MÓDULO: AEROPUERTOS
