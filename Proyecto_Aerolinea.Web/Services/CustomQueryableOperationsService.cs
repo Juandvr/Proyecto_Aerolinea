@@ -104,7 +104,7 @@ namespace Proyecto_Aerolinea.Web.Services
             }
         }
 
-        public async Task<Response<List<TDTO>>> GetListAsync<TEntity, TDTO>(IQueryable<TEntity> query = null)
+        public async Task<Response<List<TDTO>>> GetListAsync<TEntity, TDTO>(IQueryable<TEntity>? query = null)
         where TEntity : class, IId
         {
             try

@@ -1,0 +1,88 @@
+﻿@using Proyecto_Aerolinea.Web.DTOs
+@model FlightDTO
+@{
+    ViewData["Title"] = "Añadir Vuelo";
+}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="m-0 font-weight-bold text-primary">Añadir vuelo</h3>
+    </div>
+
+    <div class="card-body mt-3">
+
+        <form asp-action="Create" method="POST" class="row g-3">
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="FlightCode" class="form-control" placeholder="@Html.DisplayFor(dto => dto.FlightCode)">
+                    <label asp-for="FlightCode"></label>
+                    <span asp-validation-for="FlightCode" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="DepartureDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.DepartureDateTime)">
+                    <label asp-for="DepartureDateTime"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="ArrivalDateTime" class="form-control" placeholder="@Html.DisplayFor(dto => dto.ArrivalDateTime)">
+                    <label asp-for="ArrivalDateTime"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="Status" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Status)">
+                    <label asp-for="Status"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <select asp-for="OriginAirportId" asp-items="ViewBag.Airports" class="form-control">
+                        <option value="">Seleccione un aeropuerto</option>
+                    </select>
+                    <label asp-for="OriginAirportId"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <select asp-for="DestinationAirportId" asp-items="ViewBag.Airports" class="form-control">
+                        <option value="">Seleccione un aeropuerto</option>
+                    </select>
+                    <label asp-for="DestinationAirportId"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <select asp-for="AircraftId" asp-items="ViewBag.Aircrafts" class="form-control">
+                        <option value="">Seleccione un avion</option>
+                    </select>
+                    <label asp-for="AircraftId"></label>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <button class="btn btn-primary" type="submit">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

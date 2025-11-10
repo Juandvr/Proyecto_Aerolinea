@@ -1,0 +1,66 @@
+﻿@using Proyecto_Aerolinea.Web.DTOs
+@model AirportDTO
+@{
+    ViewData["Title"] = "Editar aeropuerto";
+}
+
+<h1>Editar avión</h1>
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="m-0 font-weight-bold text-primary">Editar aeropuerto</h3>
+    </div>
+
+    <div class="card-body mt-3">
+
+    <form asp-action="Edit" method="POST" class="row g-3">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                <input asp-for="AirportName" class="form-control" placeholder="@Html.DisplayFor(dto => dto.AirportName)">
+                <label asp-for="AirportName"></label>
+                <span asp-validation-for="AirportName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                <input asp-for="AirportCity" class="form-control" placeholder="@Html.DisplayFor(dto => dto.AirportCity)">
+                <label asp-for="AirportCity"></label>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                <input asp-for="AirportCountry" class="form-control" placeholder="@Html.DisplayFor(dto => dto.AirportCountry)">
+                <label asp-for="AirportCountry"></label>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                <input asp-for="IATACode" class="form-control" placeholder="@Html.DisplayFor(dto => dto.IATACode)">
+                <label asp-for="IATACode"></label>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </div>
+
+    </form>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

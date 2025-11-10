@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Proyecto_Aerolinea.Web.Services;
 using Proyecto_Aerolinea.Web.Core;
 using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.Data;
@@ -40,7 +43,21 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
 
         public async Task<Response<List<FlightDTO>>> MyGetListAsync()
         {
-            return await GetListAsync<Flight, FlightDTO>();
+            try
+            {
+                List<Flight> flights = await _context.Flights
+                    .Include(f => f.OriginAirport)
+                    .Include(f => f.DestinationAirport)
+                    .Include(f => f.Aircraft)
+                    .ToListAsync();
+
+                var flightDTOs = _mapper.Map<List<FlightDTO>>(flights);
+                return Response<List<FlightDTO>>.Success(flightDTOs);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<FlightDTO>>.Failure(ex);
+            }
         }
 
         public async Task<Response<PaginationResponse<FlightDTO>>> MyPagination(PaginationRequest request)

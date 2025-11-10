@@ -1,4 +1,5 @@
-﻿using Proyecto_Aerolinea.Web.Data.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Proyecto_Aerolinea.Web.Data.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_Aerolinea.Web.DTOs
@@ -22,15 +23,15 @@ namespace Proyecto_Aerolinea.Web.DTOs
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Id de Aeropuerto de salida")]
         public Guid OriginAirportId { get; set; }
-        public required Airport OriginAirport { get; set; }
+        public AirportDTO? OriginAirport { get; set; }
         [Required]
         [Display(Name = "Id de aeropuerto de llegada")]
         public Guid DestinationAirportId { get; set; }
-        public required Airport DestinationAirport { get; set; }
+        public AirportDTO? DestinationAirport { get; set; }
         // FK AircraftId
         [Required]
         [Display(Name = "Id de avion")]
         public Guid AircraftId { get; set; }
-        public required Aircraft Aircraft { get; set; }
+        public AircraftDTO? Aircraft { get; set; }
     }
 }

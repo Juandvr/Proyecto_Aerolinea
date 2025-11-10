@@ -19,7 +19,7 @@ namespace Proyecto_Aerolinea.Web.Core.Pagination
             {
                 List<int> pages = new List<int>();
                 int half = VisiblePages / 2;
-                int star = CurrentPages - half + 1 - (VisiblePages % 2);
+                int start = CurrentPages - half + 1 - (VisiblePages % 2);
                 int end = CurrentPages + half;
 
                 int vPages = VisiblePages;
@@ -28,20 +28,18 @@ namespace Proyecto_Aerolinea.Web.Core.Pagination
                 {
                     vPages = TotalPages;
                 }
-
-                if (star <= 0)
+                if (start <= 0)
                 {
-                    star = 1;
+                    start = 1;
                     end = vPages;
                 }
-
                 if (end > TotalPages)
                 {
-                    star = TotalPages - vPages + 1;
+                    start = TotalPages - vPages + 1;
                     end = TotalPages;
                 }
 
-                int itPage = star;
+                int itPage = start;
 
                 while (itPage <=end)
                 {

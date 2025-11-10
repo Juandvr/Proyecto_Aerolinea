@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Core.Extensions;
-//using Proyecto_Aerolinea.Web.Core.Extensions;
 
 namespace Proyecto_Aerolinea.Web.Core.Pagination
 {

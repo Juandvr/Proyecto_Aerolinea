@@ -1,0 +1,62 @@
+﻿@using Proyecto_Aerolinea.Web.DTOs
+@model AircraftDTO
+@{
+    ViewData["Title"] = "Añadir avión";
+}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="m-0 font-weight-bold text-primary">Añadir avión</h3>
+    </div>
+
+    <div class="card-body mt-3">
+
+        <form asp-action="Create" method="POST" class="row g-3">
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="Model" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Model)">
+                    <label asp-for="Model"></label>
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="Capacity" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Capacity)">
+                    <label asp-for="Capacity"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="RegistrationNumber" class="form-control" placeholder="@Html.DisplayFor(dto => dto.RegistrationNumber)">
+                    <label asp-for="RegistrationNumber"></label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <input asp-for="Airline" class="form-control" placeholder="@Html.DisplayFor(dto => dto.Airline)">
+                    <label asp-for="Airline"></label>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <button class="btn btn-primary" type="submit">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

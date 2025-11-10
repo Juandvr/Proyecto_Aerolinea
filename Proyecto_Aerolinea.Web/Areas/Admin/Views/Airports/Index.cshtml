@@ -1,0 +1,83 @@
+﻿@using Proyecto_Aerolinea.Web.DTOs
+@model List<AirportDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="row">
+            <h3 class="m-0 font-weight-bold text-primary col-md-11">Aeropuertos</h3>
+            <div class="col-md-1">
+                <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+            </div>
+        </div>
+    </div>
+
+<div class="card-body mt-3">
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>AirportId</th>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+            <th>País</th>
+            <th>IATA</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var airport in Model)
+        {
+            <tr>
+                <td>@airport.Id</td>
+                <td>@airport.AirportName</td>
+                <td>@airport.AirportCity</td>
+                <td>@airport.AirportCountry</td>
+                <td>@airport.IATACode</td>
+                <td>
+                    <a asp-action="Edit" asp-route-Id="@airport.Id" class="btn btn-sm btn-warning"><i class="bi bi-pencil-fill"></i></a>
+                    <form asp-action="Delete" asp-route-Id="@airport.Id" style="display: contents;">
+                        <button class="btn btn-sm btn-danger btnDelete"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function() {
+
+            $('.btnDelete').click(function(event) {
+
+                event.preventDefault();
+
+                Swal.fire({
+                  icon: "question",
+                  title: "¿Desea eliminar la sección?",
+                  text: "No podrá revertirlo",
+                  showCancelButton: true
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        const form = $(this).closest('form');
+
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+
