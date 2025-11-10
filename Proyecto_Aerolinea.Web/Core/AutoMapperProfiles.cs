@@ -12,6 +12,9 @@ namespace Proyecto_Aerolinea.Web.Core
             CreateMap<Flight, FlightDTO>().ReverseMap();
             CreateMap<Aircraft, AircraftDTO>().ReverseMap();
             CreateMap<User, AccountUserDTO>().ReverseMap();
+            CreateMap<Permission, PermissionDTO>();
+
+            CreateMap<ProjectRole, ProjectRoleDTO>().ReverseMap();
         }
     }
 }

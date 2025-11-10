@@ -53,6 +53,19 @@ namespace Proyecto_Aerolinea.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public IActionResult DebugClaims()
+        {
+            var identity = HttpContext.User.Identity;
+            var isAuth = identity?.IsAuthenticated ?? false;
+            var name = identity?.Name;
+            var claims = HttpContext.User.Claims.Select(c => new { c.Type, c.Value }).ToList();
+
+            return Json(new { IsAuthenticated = isAuth, Name = name, Claims = claims });
+        }
+
+
+        [HttpGet]
         public IActionResult Signup()
         {
             return View();

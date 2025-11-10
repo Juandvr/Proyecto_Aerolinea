@@ -17,7 +17,7 @@ namespace Proyecto_Aerolinea.Web.Data.Entities
 
         public Guid ProjectRoleId { get; set; }
 
-        public ProjectRole? ProjectRole { get; set; }
+        public ProjectRole ProjectRole { get; set; } = null!;
 
         public string? Photo { get; set; }
 

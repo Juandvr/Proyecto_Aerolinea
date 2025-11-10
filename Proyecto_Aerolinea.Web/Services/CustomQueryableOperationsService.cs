@@ -124,6 +124,26 @@ namespace Proyecto_Aerolinea.Web.Services
                 return Response<List<TDTO>>.Failure(ex);
             }
         }
+        public async Task<Response<List<TDTO>>> GetCompleteListAsync<TEntity, TDTO>(IQueryable<TEntity> query = null)
+        where TEntity : class, IId
+        {
+            try
+            {
+                if (query is null)
+                {
+                    query = _context.Set<TEntity>();
+                }
+
+                List<TEntity> list = await query.ToListAsync();
+                List<TDTO> dtoList = _mapper.Map<List<TDTO>>(list);
+
+                return Response<List<TDTO>>.Success(dtoList);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<TDTO>>.Failure(ex);
+            }
+        }
         public async Task<Response<PaginationResponse<TDTO>>> GetPaginationAsync<TEntity, TDTO>(
         PaginationRequest request, IQueryable<TEntity>? query = null)
         where TEntity : class

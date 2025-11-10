@@ -15,5 +15,8 @@ namespace Proyecto_Aerolinea.Web.Services.Abstract
         public Task<Response<Microsoft.AspNetCore.Identity.IdentityResult>> SignupAsync(AccountUserDTO dto);
         public Task LogoutAsync();
         public Task<Response<AccountUserDTO>> UpdateUserAsync(AccountUserDTO dto);
+
+        public bool CurrentUserIsAuthenticaded();
+        public Task<bool> CurrentUserIsAuthorizedAsync(string permission, string module);
     }
 }

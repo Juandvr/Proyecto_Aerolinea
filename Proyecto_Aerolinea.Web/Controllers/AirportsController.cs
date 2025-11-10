@@ -1,10 +1,11 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Attributes;
+using Proyecto_Aerolinea.Web.Core.Pagination;
 using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Services.Abstract;
 using System.Threading.Tasks;
-using Proyecto_Aerolinea.Web.Core.Pagination;
 
 namespace Proyecto_Aerolinea.Web.Controllers
 {
@@ -19,26 +20,10 @@ namespace Proyecto_Aerolinea.Web.Controllers
             _notyfservice = notyfservice;
         }
 
-        /*public async Task<IActionResult> IndexTemporar() // Temporal - Eliminar
-        {
-            Response<List<AirportDTO>> response = await _airportService.GetListAsync();
+        // Create 
 
-            if (!response.Succeed)
-            {
-                _notyfservice.Error(response.Message);
-                return RedirectToAction("Index", "Home");
-            }
-
-            return View(response.Result);
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-        */
         [HttpPost]
+        [CustomAuthorize(permission: "createAirPlanes", module: "Aeropuertos")]
         public async Task<IActionResult> Create(AirportDTO dto)
         {
             if (!ModelState.IsValid) 

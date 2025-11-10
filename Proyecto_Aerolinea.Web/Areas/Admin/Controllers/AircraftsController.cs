@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Aerolinea.Web.Core;
+using Proyecto_Aerolinea.Web.Core.Attributes;
 using Proyecto_Aerolinea.Web.DTOs;
 using Proyecto_Aerolinea.Web.Services.Abstract;
 
@@ -31,13 +32,19 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
             return View(response.Result);
         }
 
+        // show
+
         [HttpGet]
+        [CustomAuthorize(permission: "createAirplanes", module: "Aviones")] 
         public IActionResult Create()
         {
             return View();
         }
 
+        // Create
+
         [HttpPost]
+        [CustomAuthorize(permission: "createAirplanes", module: "Aviones")]
         public async Task<IActionResult> Create([FromForm] AircraftDTO dto)
         {
             if (!ModelState.IsValid)
@@ -58,7 +65,10 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Edit
+
         [HttpGet]
+        [CustomAuthorize(permission: "editAirplanes", module: "Aviones")]
         public async Task<IActionResult> Edit([FromRoute] Guid id)
         {
             Response<AircraftDTO> response = await _AircraftService.GetOneAsync(id);
@@ -73,6 +83,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorize(permission: "editAirplanes", module: "Aviones")]
         public async Task<IActionResult> Edit([FromForm] AircraftDTO dto)
         {
             if (!ModelState.IsValid)
@@ -93,7 +104,10 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Delete
+
         [HttpPost]
+        [CustomAuthorize(permission: "deleteAirplanes", module: "Aviones")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             Response<object> response = await _AircraftService.DeleteAsync(id);

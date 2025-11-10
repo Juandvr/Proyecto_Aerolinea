@@ -4,10 +4,10 @@
     {
         public required Guid RoleId { get; set; }
 
-        public required ProjectRole Role { get; set; }
+        public ProjectRole Role { get; set; }
 
         public required Guid PermissionId { get; set; }
 
-        public required Permission Permission { get; set; }
+        public Permission Permission { get; set; }
     }
 }

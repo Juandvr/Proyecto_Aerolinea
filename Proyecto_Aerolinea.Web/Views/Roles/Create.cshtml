@@ -1,0 +1,55 @@
+﻿@model Proyecto_Aerolinea.Web.DTOs.ProjectRoleDTO
+@{
+    ViewData["Title"] = "Nuevo Rol";
+}
+
+<div class="pagetitle">
+    <h1>Roles</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Roles" asp-action="Index">Roles</a></li>
+            <li class="breadcrumb-item active">Nuevo Rol</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Nuevo Rol</h3>
+
+            <form class="row g-3" asp-action="Create" method="POST" id="frmCreate">
+
+                <!-- Partial con los campos del rol -->
+                @await Html.PartialAsync("_Role", Model)
+
+                <!-- Campo oculto donde se guardarán los IDs seleccionados -->
+                <input type="hidden" id="PermissionIds" name="PermissionIds" />
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary" id="btnCreate">Guardar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Partial con la tabla de permisos -->
+    @await Html.PartialAsync("_Permissions", Model)
+</section>
+
+@section Scripts {
+    <script>
+        document.getElementById("btnCreate").addEventListener("click", function () {
+            const checkedPermissions = Array.from(document.querySelectorAll(".permission-checkbox:checked"))
+                .map(cb => cb.value);
+
+            console.log("🔍 Permisos seleccionados:", checkedPermissions);
+
+            document.getElementById("PermissionIds").value = JSON.stringify(checkedPermissions);
+        });
+    </script>
+}
+
+

@@ -12,8 +12,8 @@ using Proyecto_Aerolinea.Web.Data;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20251101173454_identity")]
-    partial class identity
+    [Migration("20251110143308_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

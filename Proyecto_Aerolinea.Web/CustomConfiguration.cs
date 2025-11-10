@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Entities;
+using Proyecto_Aerolinea.Web.Data.Seeders;
 using Proyecto_Aerolinea.Web.Services.Abstract;
+using Proyecto_Aerolinea.Web.Services.Abtractions;
 using Proyecto_Aerolinea.Web.Services.Implementation;
+using Proyecto_Aerolinea.Web.Services.Implementations;
 
 namespace Proyecto_Aerolinea.Web
 {
@@ -72,6 +75,10 @@ namespace Proyecto_Aerolinea.Web
             builder.Services.AddScoped<IFlightService, FlightService>();
             builder.Services.AddScoped<IAirportService, AirportService>();
             builder.Services.AddScoped<IAircraftService, AircraftService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<UserRolesSeeder>();
+            builder.Services.AddScoped<PermissionsSeeder>();
+            builder.Services.AddScoped<IRolesService, RolesService>();
             builder.Services.AddScoped<IUserService, UserService>();
         }
 
