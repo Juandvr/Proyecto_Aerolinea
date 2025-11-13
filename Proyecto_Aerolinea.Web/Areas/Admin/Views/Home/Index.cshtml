@@ -1,7 +1,142 @@
-﻿
+﻿@model dynamic
 @{
     ViewData["Title"] = "Dashboard";
 }
+<body>
+    <div class="container-fluid" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 40px;">
 
-<h1>Admin</h1>
+        <!-- Bienvenida con estilo moderno -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <h1 style="color: #667eea; font-weight: bold; margin-bottom: 10px;">Panel de Control</h1>
+                    <p style="color: #95a5a6; margin: 0; font-size: 18px;">Gestiona tu agencia de viajes desde aquí</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- Tarjetas de Resumen con diseño mejorado -->
+        <div class="row mb-4">
+            <!-- Vuelos -->
+            <div class="col-md-4 mb-3">
+                <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.1;">✈️</div>
+                    <div style="position: relative; z-index: 1;">
+                        <p style="font-size: 14px; margin: 0; opacity: 0.9;">TOTAL VUELOS</p>
+                        <h1 style="font-size: 48px; font-weight: bold; margin: 10px 0;">@Model.TotalVuelos</h1>
+                        <p style="font-size: 13px; margin: 0; opacity: 0.8;">📊 Vuelos registrados</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aeropuertos -->
+            <div class="col-md-4 mb-3">
+                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.1;">🏢</div>
+                    <div style="position: relative; z-index: 1;">
+                        <p style="font-size: 14px; margin: 0; opacity: 0.9;">AEROPUERTOS</p>
+                        <h1 style="font-size: 48px; font-weight: bold; margin: 10px 0;">@Model.TotalAeropuertos</h1>
+                        <p style="font-size: 13px; margin: 0; opacity: 0.8;">🌍 Destinos activos</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aviones -->
+            <div class="col-md-4 mb-3">
+                <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.1;">🛩️</div>
+                    <div style="position: relative; z-index: 1;">
+                        <p style="font-size: 14px; margin: 0; opacity: 0.9;">FLOTA</p>
+                        <h1 style="font-size: 48px; font-weight: bold; margin: 10px 0;">@Model.TotalAviones</h1>
+                        <p style="font-size: 13px; margin: 0; opacity: 0.8;">✨ Aviones disponibles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accesos Rápidos modernos -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="color: #2c3e50; font-weight: bold; margin-bottom: 25px;">🚀 Acciones Rápidas</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <a asp-area="Admin" asp-controller="Flights" asp-action="Create" class="action-btn" style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; text-decoration: none; text-align: center; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);">
+                                <div style="font-size: 40px; margin-bottom: 10px;">✈️</div>
+                                <h5 style="margin: 0; font-weight: bold;">Nuevo Vuelo</h5>
+                                <small style="opacity: 0.9;">Crear vuelo nuevo</small>
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a asp-area="Admin" asp-controller="Airports" asp-action="Create" class="action-btn" style="display: block; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 25px; border-radius: 15px; text-decoration: none; text-align: center; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);">
+                                <div style="font-size: 40px; margin-bottom: 10px;">🏢</div>
+                                <h5 style="margin: 0; font-weight: bold;">Nuevo Aeropuerto</h5>
+                                <small style="opacity: 0.9;">Agregar destino</small>
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a asp-area="Admin" asp-controller="Aircrafts" asp-action="Create" class="action-btn" style="display: block; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 25px; border-radius: 15px; text-decoration: none; text-align: center; box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);">
+                                <div style="font-size: 40px; margin-bottom: 10px;">🛩️</div>
+                                <h5 style="margin: 0; font-weight: bold;">Nuevo Avión</h5>
+                                <small style="opacity: 0.9;">Registrar aeronave</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gestión Rápida -->
+        <div class="row">
+            <div class="col-12">
+                <div style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="color: #2c3e50; font-weight: bold; margin-bottom: 25px;">📊 Gestión Rápida</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <a asp-area="Admin" asp-controller="Flights" asp-action="Index" class="action-btn" style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; text-decoration: none; text-align: center; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);">
+                                <div style="font-size: 40px; margin-bottom: 10px;">✈️</div>
+                                <h5 style="margin: 0; font-weight: bold;">Ver Vuelos</h5>
+                                <small style="opacity: 0.9;">Gestionar todos los vuelos</small>
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a asp-area="Admin" asp-controller="Airports" asp-action="Index" class="action-btn" style="display: block; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 25px; border-radius: 15px; text-decoration: none; text-align: center; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);">
+                                <div style="font-size: 40px; margin-bottom: 10px;">🏢</div>
+                                <h5 style="margin: 0; font-weight: bold;">Ver Aeropuertos</h5>
+                                <small style="opacity: 0.9;">Gestionar destinos</small>
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a asp-area="Admin" asp-controller="Aircrafts" asp-action="Index" class="action-btn" style="display: block; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 25px; border-radius: 15px; text-decoration: none; text-align: center; box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);">
+                                <div style="font-size: 40px; margin-bottom: 10px;">🛩️</div>
+                                <h5 style="margin: 0; font-weight: bold;">Ver Aviones</h5>
+                                <small style="opacity: 0.9;">Gestionar flota</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<style>
+    .stat-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3) !important;
+    }
+
+    .action-btn {
+        transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+        }
+</style>
