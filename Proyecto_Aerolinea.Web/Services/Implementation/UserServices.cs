@@ -28,7 +28,10 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             try
             {
                 IdentityResult result = await _userManager.CreateAsync(user, password);
-
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
                 return new Response<IdentityResult>
                 {
                     Succeed = result.Succeeded,
@@ -92,11 +95,31 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
 
         public async Task<Response<IdentityResult>> SignupAsync(UserDTO dto)
         {
+            const string defaultName = "User";
 
-            throw new NotImplementedException();
-            /*const string defaultName = "User";
+            var role = await _context.ProjectRoles.FirstOrDefaultAsync(s => s.Name == defaultName);
+            if (role == null)
+            {
+                role.Id = Guid.NewGuid();
+                role.Name = defaultName;
+                await _context.AddAsync(role);
+                await _context.SaveChangesAsync();
+            }
 
-            var role = await _context.ProjectRole*/
+            User user = new User
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = dto.Email,
+                Document = dto.Document,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                PhoneNumber = dto.PhoneNumber,
+                Photo = dto.Photo,
+                ProjectRoleId = role.Id,
+                EmailConfirmed = true,
+                UserName = dto.Email
+            };
+            return await AddUserAsync(user, dto.Password);
         }
 
         public async Task<Response<UserDTO>> UpdateUserAsync(UserDTO dto)

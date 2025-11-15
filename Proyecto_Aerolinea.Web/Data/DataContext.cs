@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Data.Entities;
 using System.Reflection.Emit;
 
 namespace Proyecto_Aerolinea.Web.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        public DbSet<User> Users { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
@@ -19,9 +19,14 @@ namespace Proyecto_Aerolinea.Web.Data
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Airport> Airports { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<ProjectRole> ProjectRoles { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ConfigureKeys(modelBuilder);
+            ConfigureIndexes(modelBuilder);
             base.OnModelCreating(modelBuilder);
 
             // Airport <-> Flight
