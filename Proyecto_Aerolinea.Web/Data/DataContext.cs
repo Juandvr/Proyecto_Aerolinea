@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Data.Entities;
+using System.Reflection.Emit;
 
 namespace Proyecto_Aerolinea.Web.Data
 {
@@ -92,6 +93,29 @@ namespace Proyecto_Aerolinea.Web.Data
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+        }
+        private void ConfigureKeys(ModelBuilder modelbuilder)
+        {
+            modelbuilder.Entity<RolePermission>().HasKey(rp => new { rp.PermissionId, rp.ProjectRoleId });
+
+            modelbuilder.Entity<RolePermission>().HasOne(rp => rp.ProjectRole)
+                                            .WithMany(r => r.RolePermissions)
+                                            .HasForeignKey(rp => rp.ProjectRoleId);
+
+            modelbuilder.Entity<RolePermission>().HasOne(rp => rp.Permission)
+                                            .WithMany(p => p.RolePermissions)
+                                            .HasForeignKey(rp => rp.PermissionId);
+        }
+        private void ConfigureIndexes(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProjectRole>().HasIndex(r => r.Name)
+                                             .IsUnique();
+
+            modelBuilder.Entity<User>().HasIndex(u => u.Document)
+                                  .IsUnique();
+
+            modelBuilder.Entity<Permission>().HasIndex(p => p.Name)
+                                        .IsUnique();
         }
     }    
 }

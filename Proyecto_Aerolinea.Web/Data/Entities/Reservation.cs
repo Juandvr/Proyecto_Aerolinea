@@ -16,7 +16,7 @@ namespace Proyecto_Aerolinea.Web.Data.Entities
 
         // FK User
         [Required]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
         // Relaciones
