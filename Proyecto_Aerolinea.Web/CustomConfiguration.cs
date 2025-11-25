@@ -29,6 +29,7 @@ namespace Proyecto_Aerolinea.Web
                 config.IsDismissable = true;
                 config.Position = NotyfPosition.BottomRight;
             });
+            //IdentityDbContext
             AddIAM(builder);
             //Services
             AddServices(builder);
