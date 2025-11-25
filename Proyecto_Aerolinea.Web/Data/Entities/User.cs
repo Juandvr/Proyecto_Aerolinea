@@ -6,7 +6,9 @@ namespace Proyecto_Aerolinea.Web.Data.Entities
 {
     public class User : IdentityUser
     {
+        [Required, StringLength(50)]
         public string Document { get; set; }
+
         [Required, StringLength(50)]
         public string FirstName { get; set; }
 

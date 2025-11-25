@@ -59,7 +59,7 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
                                          || s.AirportCity.ToLower().Contains(request.Filter.ToLower()));
             }
 
-            return await Pagination<Airport, AirportDTO>(request, query);
+            return await GetPaginationAsync<Airport, AirportDTO>(request, query);
         }
 
 

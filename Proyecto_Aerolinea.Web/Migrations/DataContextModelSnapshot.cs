@@ -386,9 +386,12 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Reservations");
                 });
@@ -398,12 +401,12 @@ namespace Proyecto_Aerolinea.Web.Migrations
                     b.Property<Guid>("PermissionId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProjectRoleId")
+                    b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("PermissionId", "ProjectRoleId");
+                    b.HasKey("PermissionId", "RoleId");
 
-                    b.HasIndex("ProjectRoleId");
+                    b.HasIndex("RoleId");
 
                     b.ToTable("RolePermissions");
                 });
@@ -509,7 +512,8 @@ namespace Proyecto_Aerolinea.Web.Migrations
 
                     b.Property<string>("Document")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -677,10 +681,8 @@ namespace Proyecto_Aerolinea.Web.Migrations
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Reservation", b =>
                 {
                     b.HasOne("Proyecto_Aerolinea.Web.Data.Entities.User", "User")
-                        .WithMany("Reservations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });
@@ -693,15 +695,15 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Proyecto_Aerolinea.Web.Data.Entities.ProjectRole", "ProjectRole")
+                    b.HasOne("Proyecto_Aerolinea.Web.Data.Entities.ProjectRole", "Role")
                         .WithMany("RolePermissions")
-                        .HasForeignKey("ProjectRoleId")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Permission");
 
-                    b.Navigation("ProjectRole");
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Seat", b =>
@@ -831,11 +833,6 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 {
                     b.Navigation("SeatAssignment")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.User", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

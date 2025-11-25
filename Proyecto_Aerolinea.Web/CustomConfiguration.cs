@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Proyecto_Aerolinea.Web.Data;
 using Proyecto_Aerolinea.Web.Data.Entities;
+using Proyecto_Aerolinea.Web.Data.Seeders;
 using Proyecto_Aerolinea.Web.Services.Abstract;
+using Proyecto_Aerolinea.Web.Services.Abtractions;
 using Proyecto_Aerolinea.Web.Services.Implementation;
+using Proyecto_Aerolinea.Web.Services.Implementations;
 
 namespace Proyecto_Aerolinea.Web
 {
@@ -29,13 +32,16 @@ namespace Proyecto_Aerolinea.Web
                 config.IsDismissable = true;
                 config.Position = NotyfPosition.BottomRight;
             });
-            //IdentityDbContext
+
+            // Identity and Access Management
             AddIAM(builder);
+
             //Services
             AddServices(builder);
 
             return builder;
         }
+
         private static void AddIAM(WebApplicationBuilder builder)
         {
             builder.Services.AddIdentity<User, IdentityRole>(conf =>
@@ -58,13 +64,20 @@ namespace Proyecto_Aerolinea.Web
                 conf.AccessDeniedPath = "/Error/403";
             });
         }
+
+        public static async Task GetPages()
+        {
+        }
         public static void AddServices(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IFlightService, FlightService>();
             builder.Services.AddScoped<IAirportService, AirportService>();
             builder.Services.AddScoped<ITicketServices, TicketServices>();
             builder.Services.AddScoped<IAircraftService, AircraftService>();
-            builder.Services.AddScoped<IUserServices, UserServices>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<UserRolesSeeder>();
+            builder.Services.AddScoped<PermissionsSeeder>();
+            builder.Services.AddScoped<IRolesService, RolesService>();
         }
 
         public static WebApplication AddCustomWebApplicationConfiguration(this WebApplication app)

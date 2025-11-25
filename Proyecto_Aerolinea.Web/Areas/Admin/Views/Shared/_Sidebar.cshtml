@@ -1,4 +1,20 @@
-﻿<header>
+﻿@using Proyecto_Aerolinea.Web.Data.Entities
+@inject Proyecto_Aerolinea.Web.Services.Abstract.IUserService _userService
+
+@{
+    User? user;
+
+    try
+    {
+        user = await _userService.GetUserByEmailAsync(User.Identity.Name);
+    }
+    catch
+    {
+        user = null;
+    }
+}
+
+<header>
     <nav class="navbar navbar-dark" style="background-color: #2c3e50;">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="default" asp-controller="Home" asp-action="Index">
@@ -49,6 +65,16 @@
                                 <li><a class="dropdown-item" href="#">Ayuda</a></li>
                             </ul>
                         </li>
+                    </ul>
+
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li><a asp-area="Admin" asp-controller="Airports" asp-action="Index">Gestionar Aeropuertos</a></li>
+                        <li><a asp-area="Admin" asp-controller="Aircrafts" asp-action="Index">Gestionar Aviones</a></li>
+                        <li><a asp-area="Admin" asp-controller="Flights" asp-action="Index">Gestionar Vuelos</a></li>
+                        <li><a asp-area="default" asp-controller="Roles" asp-action="Index">Gestionar roles</a></li>
                     </ul>
                 </div>
             </div>

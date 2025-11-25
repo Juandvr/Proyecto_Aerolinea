@@ -1,0 +1,66 @@
+﻿@model Proyecto_Aerolinea.Web.Core.Pagination.PaginationResponse<Proyecto_Aerolinea.Web.DTOs.ProjectRoleDTO>
+
+
+<nav aria-label="">
+    <ul class="pagination justify-content-center">
+
+        @* Primera *@
+        <li class="page-item">
+            <a class="page-link @(Model.CurrentPages == 1 ? "disabled" : "")"
+               asp-route-Page="1"
+               asp-route-RecordsPerPage="@Model.RecordsPerPages"
+               asp-route-Filter="@Model.Filter"
+               asp-action="Index">
+                <i class="bi bi-chevron-double-left"></i>
+            </a>
+        </li>
+
+        @* Anterior *@
+        <li class="page-item">
+            <a class="page-link @(!Model.hasPrevious ? "disabled" : "")"
+               asp-route-Page="@(Model.CurrentPages - 1)"
+               asp-route-RecordsPerPage="@Model.RecordsPerPages"
+               asp-route-Filter="@Model.Filter"
+               asp-action="Index">
+                <i class="bi bi-chevron-left"></i>
+            </a>
+        </li>
+
+        @* Páginas *@
+        @foreach (int page in Model.Pages)
+        {
+
+            <li class="page-item">
+                <a class="page-link @(Model.CurrentPages == page ? "disabled" : "")"
+                   asp-route-Page="@(page)"
+                   asp-route-RecordsPerPage="@Model.RecordsPerPages"
+                   asp-route-Filter="@Model.Filter"
+                   asp-action="Index">
+                    @(page)
+                </a>
+            </li>
+        }
+
+        @* Siguiente *@
+        <li class="page-item">
+            <a class="page-link @(!Model.hasNext ? "disabled" : "")"
+               asp-route-Page="@(Model.CurrentPages + 1)"
+               asp-route-RecordsPerPage="@Model.RecordsPerPages"
+               asp-route-Filter="@Model.Filter"
+               asp-action="Index">
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </li>
+
+        @* Última *@
+        <li class="page-item">
+            <a class="page-link @(Model.CurrentPages == Model.TotalPages ? "disabled" : "")"
+               asp-route-Page="@Model.TotalPages"
+               asp-route-RecordsPerPage="@Model.RecordsPerPages"
+               asp-route-Filter="@Model.Filter"
+               asp-action="Index">
+                <i class="bi bi-chevron-double-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

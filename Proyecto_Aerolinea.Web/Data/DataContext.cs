@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web.Data.Entities;
 using System.Reflection.Emit;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Proyecto_Aerolinea.Web.Data
 {
@@ -91,26 +92,21 @@ namespace Proyecto_Aerolinea.Web.Data
                 .WithMany(r => r.Payments)
                 .HasForeignKey(p => p.ReservationId)
                 .OnDelete(DeleteBehavior.Cascade);
-            // Reservation <-> User
-            modelBuilder.Entity<Reservation>()
-                .HasOne(r => r.User)
-                .WithMany(u => u.Reservations)
-                .HasForeignKey(r => r.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
 
         }
-        private void ConfigureKeys(ModelBuilder modelbuilder)
+        private void ConfigureKeys(ModelBuilder modelBuilder)
         {
-            modelbuilder.Entity<RolePermission>().HasKey(rp => new { rp.PermissionId, rp.ProjectRoleId });
+            modelBuilder.Entity<RolePermission>().HasKey(rp => new { rp.PermissionId, rp.RoleId });
 
-            modelbuilder.Entity<RolePermission>().HasOne(rp => rp.ProjectRole)
+            modelBuilder.Entity<RolePermission>().HasOne(rp => rp.Role)
                                             .WithMany(r => r.RolePermissions)
-                                            .HasForeignKey(rp => rp.ProjectRoleId);
+                                            .HasForeignKey(rp => rp.RoleId);
 
-            modelbuilder.Entity<RolePermission>().HasOne(rp => rp.Permission)
+            modelBuilder.Entity<RolePermission>().HasOne(rp => rp.Permission)
                                             .WithMany(p => p.RolePermissions)
                                             .HasForeignKey(rp => rp.PermissionId);
         }
+
         private void ConfigureIndexes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProjectRole>().HasIndex(r => r.Name)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -179,7 +179,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Document = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Document = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ProjectRoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -214,12 +214,12 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 name: "RolePermissions",
                 columns: table => new
                 {
-                    ProjectRoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PermissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RolePermissions", x => new { x.PermissionId, x.ProjectRoleId });
+                    table.PrimaryKey("PK_RolePermissions", x => new { x.PermissionId, x.RoleId });
                     table.ForeignKey(
                         name: "FK_RolePermissions_Permissions_PermissionId",
                         column: x => x.PermissionId,
@@ -227,8 +227,8 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RolePermissions_ProjectRoles_ProjectRoleId",
-                        column: x => x.ProjectRoleId,
+                        name: "FK_RolePermissions_ProjectRoles_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "ProjectRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -512,7 +512,12 @@ namespace Proyecto_Aerolinea.Web.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_UserId",
                 table: "Reservations",
-                column: "UserId");
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolePermissions_RoleId",
+                table: "RolePermissions",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RolePermissions_ProjectRoleId",

@@ -1,4 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@using Proyecto_Aerolinea.Web.Data.Entities
+@inject Proyecto_Aerolinea.Web.Services.Abstract.IUserService _userService
+
+@{
+	User? user;
+
+	try
+	{
+		user = await _userService.GetUserByEmailAsync(User.Identity.Name);
+	}
+	catch
+	{
+		user = null;
+	}
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>

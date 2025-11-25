@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Proyecto_Aerolinea.Web.Data;
+﻿using Microsoft.AspNetCore.Authorization;
 
 namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class HomeController : Controller
     {

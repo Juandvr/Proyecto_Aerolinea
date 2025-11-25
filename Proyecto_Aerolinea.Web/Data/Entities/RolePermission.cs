@@ -2,9 +2,12 @@
 {
     public class RolePermission
     {
-        public Guid ProjectRoleId { get; set; }
-        public ProjectRole ProjectRole { get; set; }
-        public Guid PermissionId { get; set; }
+        public required Guid RoleId { get; set; }
+
+        public ProjectRole Role { get; set; }
+
+        public required Guid PermissionId { get; set; }
+
         public Permission Permission { get; set; }
     }
 }

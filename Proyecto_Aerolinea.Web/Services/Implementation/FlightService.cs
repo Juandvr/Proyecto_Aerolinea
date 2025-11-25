@@ -71,7 +71,7 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
                 || s.Status.ToLower().Contains(request.Filter.ToLower()));
             }
 
-            return await Pagination<Flight, FlightDTO>(request, query);
+            return await GetPaginationAsync<Flight, FlightDTO>(request, query);
         }
     }
 }
