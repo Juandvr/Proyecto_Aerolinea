@@ -43,7 +43,7 @@ namespace Proyecto_Aerolinea.Web.Data.Seeders
                 await _context.SaveChangesAsync();
             }
 
-            var allPermissions = await _context.Permissions.ToListAsync();
+            List<Permission> allPermissions = await _context.Permissions.ToListAsync();
 
             foreach (var permission in allPermissions)
             {

@@ -386,12 +386,9 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -681,8 +678,10 @@ namespace Proyecto_Aerolinea.Web.Migrations
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Reservation", b =>
                 {
                     b.HasOne("Proyecto_Aerolinea.Web.Data.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
+                        .WithMany("Reservations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -833,6 +832,11 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 {
                     b.Navigation("SeatAssignment")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.User", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

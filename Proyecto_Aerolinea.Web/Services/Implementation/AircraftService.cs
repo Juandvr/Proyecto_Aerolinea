@@ -23,9 +23,9 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             return await CreateAsync<Aircraft, AircraftDTO>(dto);
         }
 
-        public Task<Response<object>> DeleteAsync(Guid id)
+        public async Task<Response<object>> DeleteAsync(Guid id)
         {
-            return DeleteAsync<Aircraft>(id);
+            return await DeleteAsync<Aircraft>(id);
         }
 
         public async Task<Response<AircraftDTO>> UpdateAsync(AircraftDTO dto)

@@ -12,11 +12,11 @@ using Proyecto_Aerolinea.Web.Data;
 namespace Proyecto_Aerolinea.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20251115152801_Initial")]
+    [Migration("20251125223510_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
-        protected void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -389,12 +389,9 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -403,6 +400,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 {
                     b.Property<Guid>("PermissionId")
                         .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
@@ -683,8 +681,10 @@ namespace Proyecto_Aerolinea.Web.Migrations
             modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.Reservation", b =>
                 {
                     b.HasOne("Proyecto_Aerolinea.Web.Data.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
+                        .WithMany("Reservations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -696,6 +696,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
                     b.HasOne("Proyecto_Aerolinea.Web.Data.Entities.ProjectRole", "Role")
                         .WithMany("RolePermissions")
                         .HasForeignKey("RoleId")
@@ -703,6 +704,7 @@ namespace Proyecto_Aerolinea.Web.Migrations
                         .IsRequired();
 
                     b.Navigation("Permission");
+
                     b.Navigation("Role");
                 });
 
@@ -833,6 +835,11 @@ namespace Proyecto_Aerolinea.Web.Migrations
                 {
                     b.Navigation("SeatAssignment")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Proyecto_Aerolinea.Web.Data.Entities.User", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

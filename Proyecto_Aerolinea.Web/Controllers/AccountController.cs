@@ -141,5 +141,44 @@ namespace Proyecto_Aerolinea.Web.Controllers
             _notyfService.Error("Debe ajustar lo errores de validación");
             return View(dto);
         }
+        [Authorize]
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangaPasswordDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                _notyfService.Error("Debe ajustar lo errores de validación");
+                return View();
+            }
+
+            User user = await _userService.GetUserByEmailAsync(User.Identity.Name);
+
+            bool isCorrectPassword = await _userService.CheckPasswordAsync(user, dto.CurrentPassword);
+
+            if (!isCorrectPassword)
+            {
+                _notyfService.Error("La contraseña actual es incorrecta");
+                return View();
+            }
+
+            string resetToken = await _userService.GeneratePasswordResetTokenAsync(user);
+            IdentityResult result = await _userService.ResetPasswordAsync(user, resetToken, dto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                _notyfService.Error("Ha ocurrido un error al intentar cambiar de contraseña");
+                return View(dto);
+            }
+
+            _notyfService.Success("Contraseña actualizada con exito");
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

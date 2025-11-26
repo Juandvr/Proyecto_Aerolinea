@@ -8,7 +8,7 @@ namespace Proyecto_Aerolinea.Web.Core.Attributes
     {
         public CustomAuthorizeAttribute(string permission, string module) : base(typeof(CustomAuthorizeFilter))
         {
-            Arguments = [module, permission];
+            Arguments = new object[] { module, permission };
         }
     }
 

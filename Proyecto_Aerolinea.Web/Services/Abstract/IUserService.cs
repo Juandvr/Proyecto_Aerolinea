@@ -8,11 +8,14 @@ namespace Proyecto_Aerolinea.Web.Services.Abstract
     public interface IUserService
     {
         public Task<Response<IdentityResult>> AddUserAsync(User user, string password);
+        public Task<bool> CheckPasswordAsync(User user, string password);
         public Task<Response<IdentityResult>> ConfirmUserAsync(User user, string token);
         public Task<Response<string>> GenerateConfirmationTokenAsync(User user);
+        public Task<string> GeneratePasswordResetTokenAsync(User user);
         public Task<User> GetUserByEmailAsync(string email);
+        public Task<IdentityResult> ResetPasswordAsync(User user, string resetToken, string newPassword);
         public Task<Response<SignInResult>> LoginAsync(LoginDTO dto);
-        public Task<Response<Microsoft.AspNetCore.Identity.IdentityResult>> SignupAsync(AccountUserDTO dto);
+        public Task<Response<IdentityResult>> SignupAsync(AccountUserDTO dto);
         public Task LogoutAsync();
         public Task<Response<AccountUserDTO>> UpdateUserAsync(AccountUserDTO dto);
 

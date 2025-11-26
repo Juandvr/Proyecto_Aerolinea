@@ -68,7 +68,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         // Edit
 
         [HttpGet]
-        [CustomAuthorize(permission: "editAirplanes", module: "Aviones")]
+        [CustomAuthorize(permission: "updateAirplanes", module: "Aviones")]
         public async Task<IActionResult> Edit([FromRoute] Guid id)
         {
             Response<AircraftDTO> response = await _AircraftService.GetOneAsync(id);
@@ -83,7 +83,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [CustomAuthorize(permission: "editAirplanes", module: "Aviones")]
+        [CustomAuthorize(permission: "updateAirplanes", module: "Aviones")]
         public async Task<IActionResult> Edit([FromForm] AircraftDTO dto)
         {
             if (!ModelState.IsValid)

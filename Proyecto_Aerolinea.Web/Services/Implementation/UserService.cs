@@ -107,12 +107,6 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
             return has;
         }
 
-
-
-        //
-
-
-
         public async Task<Response<string>> GenerateConfirmationTokenAsync(User user)
         {
             string result = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -201,6 +195,21 @@ namespace Proyecto_Aerolinea.Web.Services.Implementation
         private async Task<User> GetUserAsync(string? id)
         {
             return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<bool> CheckPasswordAsync(User user, string password)
+        {
+            return await _userManager.CheckPasswordAsync(user, password);
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(User user)
+        {
+            return await _userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(User user, string resetToken, string newPassword)
+        {
+            return await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
         }
     }
 }

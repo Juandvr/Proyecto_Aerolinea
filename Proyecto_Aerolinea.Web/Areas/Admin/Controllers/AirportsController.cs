@@ -37,7 +37,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         // Show
 
         [HttpGet]
-        [CustomAuthorize(permission: "showAirPlanes", module: "Aeropuertos")]
+        [CustomAuthorize(permission: "showAirports", module: "Aeropuertos")]
         public IActionResult Create()
         {
             return View();
@@ -46,7 +46,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         // Create
 
         [HttpPost]
-        [CustomAuthorize(permission: "createAirPlanes", module: "Aeropuertos")]
+        [CustomAuthorize(permission: "createAirports", module: "Aeropuertos")]
         public async Task<IActionResult> Create([FromForm] AirportDTO dto)
         {
             if (!ModelState.IsValid) 
@@ -68,7 +68,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [CustomAuthorize(permission: "createAirPlanes", module: "Aeropuertos")]
+        [CustomAuthorize(permission: "createAirports", module: "Aeropuertos")]
         public async Task<IActionResult> Edit([FromRoute] Guid id)
         {
             Response<AirportDTO> response = await _airportService.GetOneAsync(id);
@@ -85,7 +85,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         // Edit
 
         [HttpPost]
-        [CustomAuthorize(permission: "updateAirPlanes", module: "Aeropuertos")]
+        [CustomAuthorize(permission: "updateAirports", module: "Aeropuertos")]
         public async Task<IActionResult> Edit([FromForm] AirportDTO dto)
         {
             if (!ModelState.IsValid)
@@ -109,7 +109,7 @@ namespace Proyecto_Aerolinea.Web.Areas.Admin.Controllers
         // Delete
 
         [HttpPost]
-        [CustomAuthorize(permission: "deleteAirPlanes", module: "Aeropuertos")]
+        [CustomAuthorize(permission: "deleteAirports", module: "Aeropuertos")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             Response<object> response = await _airportService.DeleteAsync(id);
