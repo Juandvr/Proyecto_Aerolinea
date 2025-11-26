@@ -16,7 +16,7 @@
                 <small style="color: rgba(255,255,255,0.9);">Administra todos los vuelos programados</small>
             </div>
             <div class="col-md-2 col-4 text-end">
-                <a asp-action="Create" class="btn btn-light" style="border-radius: 10px; padding: 10px 15px; font-weight: bold; box-shadow: 0 3px 10px rgba(0,0,0,0.2); white-space: nowrap;">
+                <a asp-area="Admin" asp-controller="Flights" asp-action="Create" class="btn btn-light" style="border-radius: 10px; padding: 10px 15px; font-weight: bold; box-shadow: 0 3px 10px rgba(0,0,0,0.2); white-space: nowrap;">
                     <i class="bi bi-plus-circle"></i> Nuevo
                 </a>
             </div>
@@ -73,10 +73,10 @@
                             🛩️ @flight.Aircraft.Model
                         </td>
                         <td style="padding: 15px; vertical-align: middle; text-align: center;">
-                            <a asp-action="Edit" asp-route-Id="@flight.Id" class="btn btn-sm" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 8px; padding: 8px 15px; margin-right: 5px; transition: all 0.3s ease;">
+                            <a asp-area="Admin" asp-controller="Flights" asp-action="Edit" asp-route-Id="@flight.Id" class="btn btn-sm" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 8px; padding: 8px 15px; margin-right: 5px; transition: all 0.3s ease;">
                                 <i class="bi bi-pencil-fill"></i> Editar
                             </a>
-                            <form asp-action="Delete" asp-route-Id="@flight.Id" style="display: inline;">
+                            <form asp-area="Admin" asp-controller="Flights" asp-action="Delete" asp-route-Id="@flight.Id" style="display: inline;">
                                 <button class="btn btn-sm btnDelete" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border: none; border-radius: 8px; padding: 8px 15px; transition: all 0.3s ease;">
                                     <i class="bi bi-trash-fill"></i> Eliminar
                                 </button>

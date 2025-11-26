@@ -37,11 +37,13 @@ namespace Proyecto_Aerolinea.Web.Data
                 .WithMany(a => a.OriginFlights)
                 .HasForeignKey(f => f.OriginAirportId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Flight>()
                 .HasOne(f => f.DestinationAirport)
                 .WithMany(a => a.DestinationFlights)
                 .HasForeignKey(f => f.DestinationAirportId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             // SeatAssignment <-> Ticket (uno a uno)
             modelBuilder.Entity<SeatAssignment>()
                 .HasOne(sa => sa.Ticket)
@@ -92,7 +94,6 @@ namespace Proyecto_Aerolinea.Web.Data
                 .WithMany(r => r.Payments)
                 .HasForeignKey(p => p.ReservationId)
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
         private void ConfigureKeys(ModelBuilder modelBuilder)
         {

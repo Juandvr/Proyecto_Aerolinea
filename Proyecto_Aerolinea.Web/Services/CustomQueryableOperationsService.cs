@@ -66,6 +66,11 @@ namespace Proyecto_Aerolinea.Web.Services
         {
             try
             {
+                if (id == Guid.Empty)
+                {
+                    return Response<TDTO>.Failure("El id no puede ser nulo");
+                }
+
                 TEntity entity = _mapper.Map<TEntity>(dto);
 
                 entity.Id = id;

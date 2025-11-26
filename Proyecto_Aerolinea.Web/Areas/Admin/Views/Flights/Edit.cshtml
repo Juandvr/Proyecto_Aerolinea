@@ -17,7 +17,7 @@
                         <small style="color: rgba(255,255,255,0.9);">Modifica los datos del vuelo seleccionado</small>
                     </div>
                     <div class="card-body" style="padding: 40px;">
-                        <form asp-action="Edit" method="POST" class="row g-4">
+                        <form asp-area="Admin" asp-controller="Flights" asp-action="Edit" method="POST" class="row g-4">
                             <input type="hidden" asp-for="Id" />
 
                             <div class="col-md-12">
@@ -94,7 +94,7 @@
                                 <button class="btn btn-lg" type="submit" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; border: none; border-radius: 12px; padding: 15px 40px; font-weight: bold; margin-right: 10px; box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3); transition: all 0.3s ease;">
                                     <i class="bi bi-check-circle"></i> Actualizar Vuelo
                                 </button>
-                                <a asp-action="Index" class="btn btn-lg" style="background: #95a5a6; color: white; border: none; border-radius: 12px; padding: 15px 40px; font-weight: bold; box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3); transition: all 0.3s ease;">
+                                <a asp-area="Admin" asp-controller="Flights" asp-action="Index" class="btn btn-lg" style="background: #95a5a6; color: white; border: none; border-radius: 12px; padding: 15px 40px; font-weight: bold; box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3); transition: all 0.3s ease;">
                                     <i class="bi bi-arrow-left"></i> Volver
                                 </a>
                             </div>

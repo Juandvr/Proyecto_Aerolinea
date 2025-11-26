@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Aerolinea.Web;
 using Proyecto_Aerolinea.Web.Data;
@@ -58,13 +59,25 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "areas",
+//    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+
+    app.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.AddCustomWebApplicationConfiguration();
 
